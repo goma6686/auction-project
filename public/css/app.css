@@ -1,0 +1,25 @@
+
+#border {
+    border: 5px double rgba(164,31,31,0.75);
+    }
+
+h2 {
+    color: blue;
+    text-align: center;
+}
+
+body {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.main_header_container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .main-header__search {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
