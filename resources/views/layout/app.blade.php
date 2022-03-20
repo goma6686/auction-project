@@ -18,6 +18,9 @@
   <link href = "{{asset('css/app.css')}}" rel = "stylesheet">
 </head>
 <body>
+    <header class="p-3 bg-dark text-white">
+        @include('layout.header')
+    </header>
     <div id="app">
         <main class="py-4">
             @yield('content')

@@ -2,7 +2,7 @@
 
 @section('content')
 <section class="main">
-    <div class="container mt-5">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <h1 class="latest text-center mb-5">Latest Items</h1>
