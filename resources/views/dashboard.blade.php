@@ -10,9 +10,6 @@
                         <div class="col-8">
                             <p class="pt-3 text-muted">{{ request('order') == 'asc' ? 'Sorted price from lower to higher' : 'Sorted price from higher to lower'  }}</p>
                         </div>
-                        <div class="col-4 d-flex justify-content-end">
-                            <h1> Forma </h1>
-                        </div>
                     </div>
                     <div class="row items-row">
                         @forelse($items as $item) 
