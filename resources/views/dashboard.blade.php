@@ -15,13 +15,13 @@
                         </div>
                     </div>
                     <div class="row items-row">
-                        {{-- @forelse($items as $item) --}}
+                        @forelse($items as $item) 
                             <div class="col-lg-3 col-md-6 col-sm-12 mb-5">
                                 <div class="card">
-                                    <img class="card-img-top item-thumbnail" src="{{-- {{ asset($item->thumbnail) }} --}}"
-                                         alt="{{-- {{ $item->name }}--}}">
+                                    <img class="card-img-top item-thumbnail" src=" {{ asset($item->cover) }} "
+                                         alt="{{ $item->name }}">
                                     <div class="card-body">
-                                        <h5 class="card-title item-title">{{-- {{ $item->name }} --}}</h5>
+                                        <h5 class="card-title item-title">{{ $item->name }} </h5>
                                         <p class="text-muted mb-0">
                                                 <span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -32,7 +32,7 @@
                                                             d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
                                                     </svg>
                                                 </span>
-                                            <span>Min Bid:{{-- {{ $item->minimal_bid }} --}}</span>
+                                            <span>Min Bid: {{ $item->min_bid }} </span>
                                         </p>
                                         <p class="text-muted">
                                                 <span>
@@ -43,7 +43,7 @@
                                                     </svg>
                                                 </span>
                                             <span>
-                                                    Total Bids: {{-- {{ $item->bids()->count() }} --}}
+                                                    Total Bidders: {{ $item->bidder_count }} {{-- {{ $item->bids()->count() }} --}}
                                                 </span>
                                         </p>
                                         {{-- <a href="{{ route('item.show', ['item' => $item->id]) }}"
@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
                             </div>
-                       {{--  @endforelse --}}
+                        @endforeach
                     </div>
     
                      {{--   {{ $items->appends(request()->except('page'))->links() }} --}}

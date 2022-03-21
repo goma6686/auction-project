@@ -23,8 +23,8 @@ return new class extends Migration
             $table->integer('bid_sum')->default(0);
             $table->string('cover')->nullable();
             $table->boolean('is_active')->default(false);
-            $table->timestamp('added_at');
-            $table->dateTime('end_date');
+            //$table->timestamp('added_at');
+            //$table->dateTime('end_date');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Item;
 
 class ItemSeeder extends Seeder
 {
@@ -14,9 +15,21 @@ class ItemSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('items')->insert([
-            'name' => Str::random(5),
-            'condition' => 'new'
+        \DB::table('items') -> delete();
+
+        \DB::table('items')->insert([
+            [
+                'name' => 'anime mergaite',
+                'description' => 'descr',
+                'condition' => 'new',
+                'cover' => 'https://otakukart.com/wp-content/uploads/2021/12/zero-two.jpg'
+            ],
+            [
+                'name' => 'anime mergaite2',
+                'description' => 'descr',
+                'condition' => 'new',
+                'cover' => 'https://static.boredpanda.com/blog/wp-content/uploads/2019/03/image-5c90517716638__700.jpg'
+            ],
         ]);
     }
 }
