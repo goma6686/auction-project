@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ItemController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -19,18 +19,11 @@ Route::get('/', function () {
     return view('dashboard');
 });
 */
-Route::get('/', [
-    ItemController::class, 'show'
-]);
 
 Route::get('/test', [
-    ItemController::class, 'itemTest'
+    HomeController::class, 'itemTest'
 ]);
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('dashboard');
