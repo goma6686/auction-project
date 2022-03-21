@@ -26,3 +26,11 @@ Route::get('/', [
 Route::get('/test', [
     ItemController::class, 'itemTest'
 ]);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
