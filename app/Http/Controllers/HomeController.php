@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\User;
 use DB;
 
 class HomeController extends Controller
@@ -25,11 +26,13 @@ class HomeController extends Controller
      */
 
     public function index(){
-        //$items = DB::table('items')->get();
-        //return view('dashboard', ['items'=>$items]);
-
         $items = Item::all();
         return view('dashboard', ['items' => $items]);
+    }
+
+    public function profile(){
+        $data = User::all();
+        return view('profile', ['users' => $data]);
     }
 
     public function itemTest(){

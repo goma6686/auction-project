@@ -1,0 +1,56 @@
+.profile-header {
+    position: relative;
+    overflow: hidden
+}
+
+.profile-header .profile-header-cover {
+    background-image: url(https://cdn.pixabay.com/photo/2018/07/20/13/52/sunflower-3550693_960_720.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0
+}
+
+.profile-header .profile-header-content {
+    color: #fff;
+    padding: 20px
+}
+/*profile picture*/
+.profile-header-img {
+    float: left;
+    width: 120px;
+    height: 120px;
+    position: relative;
+    background: #fff
+}
+
+.profile-header-img img {
+    max-width: 100%
+}
+
+.profile-header-info h4 {
+    font-weight: 500;
+    color: #fff
+}
+
+.profile-header-img+.profile-header-info {
+    margin-left: 140px
+}
+
+.profile-header .profile-header-content,
+.profile-header {
+    position: relative
+}
+
+.profile-header .profile-header-tab {
+    background: #fff;
+    list-style-type: none;
+    margin: -10px 0 0;
+    padding: 0 0 0 140px;
+    white-space: nowrap;
+    border-radius: 0
+}

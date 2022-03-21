@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +14,6 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*
-Route::get('/', function () {
-    return view('dashboard');
-});
-*/
 
 Route::get('/test', [
     HomeController::class, 'itemTest'
@@ -27,3 +22,4 @@ Route::get('/test', [
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
