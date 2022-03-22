@@ -31,13 +31,10 @@
               <!-- begin profile-content -->
               <div class="profile-content">
                  <!-- begin tab-content -->
-                 <div class="tab-content p-0">
+                 <div class="tab-content">
                     <!-- begin #profile-items tab -->
                     <div class="tab-pane fade active show" id="profile-items">
                        <div class="row items-row">
-                        <p> 
-                           <a href="{{ route('post') }}" class="btn btn-sm btn-dark" role="button">Add item</a>
-                        </p>
                           
                        </div>
                         <table class="table">
@@ -46,7 +43,17 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">minBid</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">
+                                   <div class="item-group">
+                                       <p>Actions</p>
+                                       <p> 
+                                          <a href="{{ route('post') }}" class="btn btn-sm btn-dark" role="button">Add item</a>
+                                       </p>
+
+                                   </div>
+
+                                </th>
+
                               </tr>
                             </thead>
                             <tbody>
