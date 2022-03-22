@@ -21,7 +21,7 @@
                        <div class="profile-header-info">
                           <h4 class="m-t-10 m-b-5">{{ Auth::user()->name }}</h4>
                           <p class="m-b-10">{{ Auth::user()->email }}</p>
-                          <a href="#" class="btn btn-sm btn-info mb-2">Edit Profile</a>
+                          <a href="#" class="btn btn-sm btn-dark mb-2">Edit Profile</a>
                        </div>
                        <!-- END profile-header-info -->
                     </div>
@@ -34,6 +34,12 @@
                  <div class="tab-content p-0">
                     <!-- begin #profile-items tab -->
                     <div class="tab-pane fade active show" id="profile-items">
+                       <div class="row items-row">
+                        <p> 
+                           <a href="#" class="btn btn-sm btn-dark" role="button">Add item</a>
+                        </p>
+                          
+                       </div>
                         <table class="table">
                             <thead class="thead-dark">
                               <tr>
@@ -48,7 +54,10 @@
                                 <th scope="row">1</th>
                                 <td>Mark</td>
                                 <td>Otto</td>
-                                <td>Edit</td>
+                                <td>
+                                 <a href="#" class="btn btn-sm btn-dark " role="button">Edit</a>
+                                 <a href="#" class="btn btn-sm btn-danger" role="button">Delete</a>
+                                </td>
                               </tr>
                           </table>
                        <!-- end timeline -->

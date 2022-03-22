@@ -15,6 +15,12 @@
     bottom: 0
 }
 
+.items-row{
+    float: right;
+    position: relative;
+    padding: 20px
+}
+
 .profile-header .profile-header-content {
     color: #fff;
     padding: 20px
@@ -46,7 +52,7 @@
     position: relative
 }
 
-.profile-header .profile-header-tab {
+.profile-header .profile-header-tab .profile-items {
     background: #fff;
     list-style-type: none;
     margin: -10px 0 0;
