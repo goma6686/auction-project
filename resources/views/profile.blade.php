@@ -36,7 +36,7 @@
                     <div class="tab-pane fade active show" id="profile-items">
                        <div class="row items-row">
                         <p> 
-                           <a href="#" class="btn btn-sm btn-dark" role="button">Add item</a>
+                           <a href="{{ route('post') }}" class="btn btn-sm btn-dark" role="button">Add item</a>
                         </p>
                           
                        </div>

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +23,5 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+Route::get('/profile/add', [PostController::class, 'index'])->name('post');
+Route::post('store-form', [PostController::class, 'store']);
