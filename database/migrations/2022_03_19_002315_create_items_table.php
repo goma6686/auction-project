@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('condition');
+            $table->foreignId('condition_id')->unsigned()->constrained('conditions');
+            $table->foreignId('user_id')->unsigned()->constrained('users');
             $table->integer('min_bid')->default(1);
             $table->integer('bidder_count')->default(0);
             $table->integer('bid_sum')->default(0);

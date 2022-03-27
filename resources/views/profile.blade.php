@@ -30,6 +30,7 @@
               </div>
               <!-- begin profile-content -->
               <div class="profile-content">
+               <a href="{{ route('create-post') }}" class="nav-link">Add item</a>
                  <!-- begin tab-content -->
                  <div class="tab-content">
                     <!-- begin #profile-items tab -->
@@ -43,16 +44,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">minBid</th>
-                                <th scope="col">
-                                   <div class="item-group">
-                                       <p>Actions</p>
-                                       <p> 
-                                          <a href="{{ route('post') }}" class="btn btn-sm btn-dark" role="button">Add item</a>
-                                       </p>
-
-                                   </div>
-
-                                </th>
+                                <th scope="col">Actions</th>
 
                               </tr>
                             </thead>

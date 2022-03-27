@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Condition;
 use DB;
 
 class HomeController extends Controller
@@ -28,16 +29,6 @@ class HomeController extends Controller
     public function index(){
         $items = Item::all();
         return view('dashboard', ['items' => $items]);
-    }
-
-    public function profile(){
-        $data = User::all();
-        return view('profile', ['users' => $data]);
-    }
-
-    public function itemTest(){
-        $items = Item::all();
-        return view('test', ['items' => $items]);
     }
 
 }

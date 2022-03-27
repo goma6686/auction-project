@@ -7,18 +7,17 @@ use App\Models\Item;
 use App\Models\User;
 use App\Models\Condition;
 
-class PostController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        $items = Item::all();
-        $users = User::all();
-        $conditions = Condition::all();
-        return view('create-post', ['items' => $items, 'conditions' => $conditions, 'users' => $users]);
+    public function index()
+    {
+        $data = User::all();
+        return view('profile', ['users' => $data]);
     }
 
     /**
@@ -39,12 +38,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $item = new Item();
-        $item->name = $request->input('name');
-        $item->description = $request->input('description');
-        $item->condition_id = $request->input('condition_id');
-        $item->save();
-        return redirect('/');
+        //
     }
 
     /**

@@ -21,13 +21,17 @@
                     <textarea name="description" class="form-control" required=""></textarea>
                   </div>
                   <div class="py-2">
-                            <div>
+                            <div class="form-group">
                                 <div class="col-md-2">
-                                    <select class="form-control" required>
-                                        <option value="">condition</option>
-                                        <option value=""> New </option>
-                                        <option value=""> Used </option>
-                                    </select>
+                                  <label for="description">Condition</label>
+                                  <select class="form-control" required>
+                                        @foreach($conditions as $condition)
+                                               {{--
+                                                <option value="{{ $condition->id }}" @if($condition->id == $items->condition_id) selected @endif> {{$condition->name}} </option>
+                                                --}}
+                                                <option value="{{ $condition->id }}" > {{$condition->name}} </option>
+                                        @endforeach
+                                </select>
                                 </div>
                             </div>
                   </div>
