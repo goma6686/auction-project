@@ -2,13 +2,9 @@
 @section('content')
 <div class="py-12">
     <h1 class="latest text-center mb-2">Create Auction Post</h1>
+    {{ Html::ul($errors->all()) }}
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="p-6 bg-white border-b border-gray-200">
-            @if(session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-          @endif
             <div class="card-body">
                 <form name="add-blog-post-form" enctype="multipart/form-data" id="add-blog-post-form" method="post" action="{{url('store-form')}}">
                  @csrf
@@ -39,6 +35,27 @@
                 </form>
               </div>
         </div>
+        {{ Form::open(array('url' => 'items')) }}
+
+    <div class="form-group">
+        {{ Form::label('name', 'Name') }}
+        {{ Form::text('name', Request::old('name'), array('class' => 'form-control')) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('description', 'Description') }}
+        {{ Form::text('description', Request::old('description'), array('class' => 'form-control')) }}
+    </div>
+
+    <div class="form-group">
+        {{ Form::label('min_bid', 'minimum bid') }}
+        {{ Form::select('min_bid', array('0' => 'Select a Level', '1' => 'Sees Sunlight', '2' => 'Foosball Fanatic', '3' => 'Basement Dweller'), Request::old('min_bid'), array('class' => 'form-control')) }}
+    </div>
+
+    {{ Form::submit('Create the item!', array('class' => 'btn btn-primary')) }}
+
+{{ Form::close() }}
+
     </div>
 </div>
 @endsection
