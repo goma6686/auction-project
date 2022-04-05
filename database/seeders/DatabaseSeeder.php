@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Item;
 
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -17,8 +18,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            ItemSeeder::class,
+            UserSeeder::class,
+            ConditionSeeder::class,
         ]);
-        $this->command->info('Item table seeded successfully!');
+        $this->command->info('All tables seeded successfully!');
     }
 }

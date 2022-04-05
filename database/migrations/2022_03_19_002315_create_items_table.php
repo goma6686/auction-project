@@ -17,11 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('condition');
+            $table->foreignId('condition_id')->unsigned()->constrained('conditions');
+            $table->foreignId('user_id')->unsigned()->constrained('users');
             $table->integer('min_bid')->default(1);
             $table->integer('bidder_count')->default(0);
             $table->integer('bid_sum')->default(0);
-            $table->string('cover')->nullable();
+            $table->string('cover')->default("https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_960_720.png");
             $table->boolean('is_active')->default(false);
             //$table->timestamp('added_at');
             //$table->dateTime('end_date');
