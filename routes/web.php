@@ -23,8 +23,12 @@ Route::get('/test', [
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-Route::get('/profile/add', [PostController::class, 'index'])->name('create-post');
-Route::post('store-form', [PostController::class, 'store']);
+Route::get('/profile', [PostController::class, 'index'])->name('profile');
+Route::post('/profile', [PostController::Class, 'store']);
+Route::get('/profile/create', [PostController::class, 'create'])->name('create-post');
+Route::get('/profile/{post}/edit', [PostController::class, 'edit']);
+Route::put('/profile/{post}', [PostController::class, 'update']);
+Route::delete('/profile/{post}', [PostController::class, 'destroy']);
+
 Route::resource('conditions', 'ConditionController');
 Route::resource('items', 'ItemController');

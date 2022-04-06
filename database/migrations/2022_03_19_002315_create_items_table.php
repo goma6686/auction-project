@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('title');
             $table->text('description')->nullable();
-            $table->foreignId('condition_id')->unsigned()->constrained('conditions');
+            $table->foreignId('condition_id')->constrained('conditions');
             $table->foreignId('user_id')->unsigned()->constrained('users');
             $table->integer('min_bid')->default(1);
             $table->integer('bidder_count')->default(0);

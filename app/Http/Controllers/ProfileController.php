@@ -16,8 +16,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $data = User::all();
-        return view('profile', ['users' => $data]);
+        //
     }
 
     /**

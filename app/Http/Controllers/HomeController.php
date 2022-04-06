@@ -28,7 +28,8 @@ class HomeController extends Controller
 
     public function index(){
         $items = Item::all();
-        return view('dashboard', ['items' => $items]);
+        $conditions = Condition::all();
+        return view('dashboard', ['items' => $items, 'conditions' => $conditions]);
     }
 
 }

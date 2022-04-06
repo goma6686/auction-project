@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c1300b5eaaf607a50e52de1fd7ce554",
+    "content-hash": "9578a9dc666ca842cabbfd710fe66223",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -3007,6 +3007,70 @@
                 }
             ],
             "time": "2022-03-27T21:42:02+00:00"
+        },
+        {
+            "name": "shanmuga/laravel-entrust",
+            "version": "v3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/shanmuga3/laravel-entrust.git",
+                "reference": "e53b83141b7e29ea65fa5f6e70fe9ebf01bde7d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/shanmuga3/laravel-entrust/zipball/e53b83141b7e29ea65fa5f6e70fe9ebf01bde7d7",
+                "reference": "e53b83141b7e29ea65fa5f6e70fe9ebf01bde7d7",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^9.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Shanmuga\\LaravelEntrust\\LaravelEntrustServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelEntrust": "Shanmuga\\LaravelEntrust\\Facades\\LaravelEntrustFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Shanmuga\\LaravelEntrust\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Shanmugarajan",
+                    "email": "shanmugarajan.33@gmail.com"
+                }
+            ],
+            "description": "This package provides a flexible solution to add ACL to Laravel",
+            "keywords": [
+                "acl",
+                "authorization",
+                "entrust",
+                "laravel",
+                "laravel-entrust",
+                "permissions",
+                "php",
+                "roles"
+            ],
+            "support": {
+                "issues": "https://github.com/shanmuga3/laravel-entrust/issues",
+                "source": "https://github.com/shanmuga3/laravel-entrust/tree/v3.0"
+            },
+            "time": "2022-01-21T05:25:35+00:00"
         },
         {
             "name": "symfony/console",

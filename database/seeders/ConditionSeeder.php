@@ -21,6 +21,7 @@ class ConditionSeeder extends Seeder
                 ['id' => '2', 'name' => 'Like-New'],
                 ['id' => '3', 'name' => 'Used'],
                 ['id' => '4', 'name' => 'Broken'],
+                ['id' => '5', 'name' => 'Unknown'],
         ]);
     }
 }

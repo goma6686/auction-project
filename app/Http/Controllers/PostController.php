@@ -15,10 +15,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
+        $data = User::all();
         $items = Item::all();
-        $users = User::all();
-        $conditions = Condition::all();
-        return view('create-post', ['items' => $items, 'conditions' => $conditions, 'users' => $users]);
+        return view('profile', ['users' => $data, 'items' => $items]);
     }
 
     /**
@@ -28,7 +27,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return View::make('create-post');
+        $conditions = Condition::all();
+        $items = Item::all();
+        return view('create-post', ['conditions' => $conditions, 'items' => $items]);
     }
 
     /**
@@ -39,11 +40,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $item = new Item();
-        $item->name = $request->input('name');
-        $item->description = $request->input('description');
-        $item->condition_id = $request->input('condition_id');
-        $item->save();
+        //$item = new Item();
+        request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        //$item->condition_id = $request->input('condition_id');
+        //$item->save();
+        Item::create([
+            'title' => request('title'),
+            'description' => request('description'),
+            'condition_id'=> request('condition_id'),
+        ]);
         return redirect('/');
     }
 
