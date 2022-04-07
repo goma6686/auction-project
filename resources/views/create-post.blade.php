@@ -22,7 +22,7 @@
                                     <label for="condition">Condition</label>
                                     <select class="form-control" required>
                                             @foreach($conditions as $condition)
-                                                    <option value="{{ $condition->id }}" @if($condition->id == $items->condition_id) selected @endif> {{$condition->name}} </option>
+                                                    <option value="{{ $condition->id }}" {{$items->condition_id == $condition->id ? 'selected' : ''}}> {{$condition->name}} </option>
                                             @endforeach
                                     </select>
                                     </div>

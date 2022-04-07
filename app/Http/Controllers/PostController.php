@@ -44,6 +44,7 @@ class PostController extends Controller
         request()->validate([
             'title' => 'required',
             'description' => 'required',
+            'condition_id' => 'required',
         ]);
         //$item->condition_id = $request->input('condition_id');
         //$item->save();
