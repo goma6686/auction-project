@@ -23,6 +23,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('demo'),
         ];
 
-        User::create($data);
+        User::create($data); //one admin
+        User::factory(5)->create(); //5 random
     }
 }

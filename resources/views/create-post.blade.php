@@ -17,16 +17,16 @@
                         <textarea name="description" class="form-control" required=""></textarea>
                     </div>
                     <div class="py-2">
-                                <div class="form-group">
-                                    <div class="col-md-2">
-                                    <label for="condition">Condition</label>
-                                    <select class="form-control" required>
-                                            @foreach($conditions as $condition)
-                                                    <option value="{{ $condition->id }}" {{$items->condition_id == $condition->id ? 'selected' : ''}}> {{$condition->name}} </option>
-                                            @endforeach
-                                    </select>
-                                    </div>
-                                </div>
+                        <div class="form-group">
+                            <div class="col-md-2">
+                            <label for="condition">Condition</label>
+                            <select class="form-control" name="condition_id" type="condition_id" required>
+                                    @foreach($conditions as $condition)
+                                            <option value="{{ $condition->id }}" selected > {{$condition->name}} </option>
+                                    @endforeach
+                            </select>
+                            </div>
+                        </div>
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                   

@@ -39,25 +39,44 @@
                           
                        </div>
                         <table class="table">
-                            <thead class="thead-dark">
                               <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">Title</th>
                                 <th scope="col">minBid</th>
+                                <th scope="col">Condition</th>
+                                <th scope="col">Is Active</th>
                                 <th scope="col">Actions</th>
-
+                                <th scope="col"></th>
                               </tr>
-                            </thead>
                             <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>
-                                 <a href="#" class="btn btn-sm btn-dark " role="button">Edit</a>
-                                 <a href="#" class="btn btn-sm btn-danger" role="button">Delete</a>
-                                </td>
-                              </tr>
+                              @php
+                              $counter = 0;
+                              @endphp
+                              @foreach ($items as $item)
+                               @if (Auth::id() == $item->user_id)
+                               @php
+                                  $counter++;
+                               @endphp
+                                 <tr scope="row">
+                                    <th>{{$counter}}</th>
+                                    <td>{{$item->title}}</td>
+                                    <td>{{$item->min_bid}}</td>
+                                    <td>{{$item->condition_id}}</td>
+                                    <td>{{$item->is_active}}</td>
+                                    <td>
+                                       <a href="#" class="btn btn-sm btn-dark " role="button">Edit</a>
+                                    </td>
+                                    <td>
+                                       <form action="/profile/delete/{{$item->id}}" method="POST">
+                                          @csrf
+                                          @method('DELETE')
+                                          <button class="btn btn-sm btn-danger" onclick="return confirm('Do you want to delete this post?')">Delete</button>
+                                       </form>
+                                       <!--<a href="#" class="btn btn-sm btn-danger" role="button">Delete</a>-->
+                                    </td>
+                                 </tr>
+                               @endif
+                              @endforeach
                           </table>
                        <!-- end timeline -->
                     </div>

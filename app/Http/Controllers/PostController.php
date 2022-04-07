@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\User;
 use App\Models\Condition;
@@ -40,20 +41,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //$item = new Item();
         request()->validate([
             'title' => 'required',
             'description' => 'required',
             'condition_id' => 'required',
         ]);
-        //$item->condition_id = $request->input('condition_id');
-        //$item->save();
-        Item::create([
-            'title' => request('title'),
-            'description' => request('description'),
-            'condition_id'=> request('condition_id'),
-        ]);
-        return redirect('/');
+        $item = new Item();
+        $item -> title = $request->input('title');
+        $item -> description = $request->input('description');
+        $item->condition_id = $request->input('condition_id');
+        $item->user_id = $request->user()->id; 
+        $item->save();
+        return redirect('/profile');
     }
 
     /**
@@ -98,6 +97,8 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $items = Item::findOrFail($id);
+        $items->delete();
+        return redirect('/profile');
     }
 }
