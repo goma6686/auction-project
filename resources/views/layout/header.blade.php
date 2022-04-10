@@ -2,7 +2,7 @@
 <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             <li class="nav-item active">
-                <a class="nav-link px-2 text-secondary" href="{{ route('dashboard') }}">{{ config('app.name', 'Auction') }}</a>
+                <a class="nav-link px-2 text-secondary" href="{{ route('dashboard') }}">Auction</a>
             </li>
         </ul>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">

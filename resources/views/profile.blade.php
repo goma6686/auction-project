@@ -22,6 +22,7 @@
                           <h4 class="m-t-10 m-b-5">{{ Auth::user()->name }}</h4>
                           <p class="m-b-10">{{ Auth::user()->email }}</p>
                           <a href="#" class="btn btn-sm btn-dark mb-2">Edit Profile</a>
+                          <a href="{{ route('create-post') }}" class="btn btn-sm btn-dark mb-2">Add item</a>
                        </div>
                        <!-- END profile-header-info -->
                     </div>
@@ -30,7 +31,6 @@
               </div>
               <!-- begin profile-content -->
               <div class="profile-content">
-               <a href="{{ route('create-post') }}" class="nav-link">Add item</a>
                  <!-- begin tab-content -->
                  <div class="tab-content">
                     <!-- begin #profile-items tab -->
@@ -72,7 +72,6 @@
                                           @method('DELETE')
                                           <button class="btn btn-sm btn-danger" onclick="return confirm('Do you want to delete this post?')">Delete</button>
                                        </form>
-                                       <!--<a href="#" class="btn btn-sm btn-danger" role="button">Delete</a>-->
                                     </td>
                                  </tr>
                                @endif

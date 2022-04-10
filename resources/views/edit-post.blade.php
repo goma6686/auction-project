@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
 <div class="py-12">
-    <h1 class="latest text-center mb-2">Create Auction Post</h1>
+    <h1 class="latest text-center mb-2">Edit Post</h1>
     {{ Html::ul($errors->all()) }}
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="p-6 bg-white border-b border-gray-200">

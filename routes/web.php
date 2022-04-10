@@ -26,8 +26,8 @@ Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 Route::get('/profile', [PostController::class, 'index'])->name('profile');
 Route::post('/profile', [PostController::Class, 'store']);
 Route::get('/profile/create', [PostController::class, 'create'])->name('create-post');
-Route::get('/profile/{post}/edit', [PostController::class, 'edit']);
-Route::put('/profile/{post}', [PostController::class, 'update']);
+Route::get('/profile/edit/{id}', [PostController::class, 'edit'])->name('edit-post');
+Route::put('/profile/update/{id}', [PostController::class, 'update'])->name('update-post');
 Route::delete('/profile/delete/{id}', [PostController::class, 'destroy']);
 
 Route::resource('conditions', 'ConditionController');
