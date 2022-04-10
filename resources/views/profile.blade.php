@@ -45,6 +45,7 @@
                                 <th scope="col">minBid</th>
                                 <th scope="col">Condition</th>
                                 <th scope="col">Is Active</th>
+                                <th scope="col">End date</th>
                                 <th scope="col">Actions</th>
                                 <th scope="col"></th>
                               </tr>
@@ -63,6 +64,7 @@
                                     <td>{{$item->min_bid}}</td>
                                     <td>{{$item->condition_id}}</td>
                                     <td>{{$item->is_active}}</td>
+                                    <td>{{$item->created_at}}</td>
                                     <td>
                                        <a href="#" class="btn btn-sm btn-dark " role="button">Edit</a>
                                     </td>

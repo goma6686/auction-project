@@ -16,6 +16,14 @@
                         <label for="description">Description</label>
                         <textarea name="description" class="form-control" required=""></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="min_bid">Minimal bid:</label><br>
+                        <input type="number" name="min_bid" placeholder="1.0" step="0.01" min="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="datemin">Enter auction end date: (after {{ \Carbon\Carbon::now()->toDateString() }})</label><br>
+                        <input class="form-control" type="date" name="end_date" min="\Carbon\Carbon::now()->toDateString()">
+                    </div>
                     <div class="py-2">
                         <div class="form-group">
                             <div class="col-md-2">
@@ -33,7 +41,13 @@
                 </form>
               </div>
         </div>
-
     </div>
 </div>
+<script type="text/javascript">
+    $(function(){
+  $(".default").datetimepicker({
+      //
+  });
+});
+</script>
 @endsection
