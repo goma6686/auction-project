@@ -62,9 +62,13 @@
                                     <th>{{$counter}}</th>
                                     <td>{{$item->title}}</td>
                                     <td>{{$item->min_bid}}</td>
-                                    <td>{{$item->condition_id}}</td>
+                                    @foreach ($conditions as $condition)
+                                       @if ($item->condition_id == $condition->id)
+                                          <td>{{$condition->name}}</td>
+                                       @endif
+                                    @endforeach
                                     <td>{{$item->is_active}}</td>
-                                    <td>{{$item->created_at}}</td>
+                                    <td>{{$item->end_date}}</td>
                                     <td>
                                        <a href="#" class="btn btn-sm btn-dark " role="button">Edit</a>
                                     </td>

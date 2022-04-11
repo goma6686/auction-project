@@ -18,7 +18,8 @@ class PostController extends Controller
     public function index(){
         $data = User::all();
         $items = Item::all();
-        return view('profile', ['users' => $data, 'items' => $items]);
+        $conditions = Condition::all();
+        return view('profile', ['users' => $data, 'items' => $items, 'conditions' => $conditions]);
     }
 
     /**
@@ -43,14 +44,21 @@ class PostController extends Controller
     {
         request()->validate([
             'title' => 'required',
-            'description' => 'required',
             'condition_id' => 'required',
+            'end_date' => 'required|date|after:today',
         ]);
         $item = new Item();
         $item -> title = $request->input('title');
         $item -> description = $request->input('description');
-        $item->condition_id = $request->input('condition_id');
-        $item->user_id = $request->user()->id; 
+        $item -> min_bid = $request->input('min_bid') ?? '1.0';
+        $item -> end_date = $request->input('end_date');
+        $item-> condition_id = $request->input('condition_id');
+        if($request->has('is_active')){
+            $item->is_active = '1';
+        } else {
+            $item->is_active = '0';
+        }
+        $item-> user_id = $request->user()->id; 
         $item->save();
         return redirect('/profile');
     }

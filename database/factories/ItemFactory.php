@@ -21,8 +21,9 @@ class ItemFactory extends Factory
             'description' => $this->faker->text(50),
             'condition_id' => $this->faker->numberBetween(1,5),
             'user_id' => $this->faker->numberBetween(1,6),
-            'min_bid' => $this->faker->numberBetween(1,9),
-            'is_active' => $this->faker->numberBetween(0,1)
+            'min_bid' => $this->faker->randomFloat(4, 0, 100),
+            'is_active' => $this->faker->numberBetween(0,1),
+            'end_date' => $this->faker->dateTimeBetween('+1 days', '+4 weeks'),
         ];
     }
 }

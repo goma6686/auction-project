@@ -8,8 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
+
+    protected $table = 'items';
+
     protected $fillable = [
-        'title', 'description',
+        'title', 
+        'description',
+        'min_bid',
+        'end_date',
+        'condition_id',
+        'is_active',
     ];
-    //return $this->hasOne(Condition::class, 'foreign_key');
 }
