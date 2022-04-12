@@ -46,20 +46,34 @@ class PostController extends Controller
             'title' => 'required',
             'condition_id' => 'required',
             'end_date' => 'required|date|after:today',
+            'cover' => 'mimes:jpg,png,jpeg,svg|image',
         ]);
         $item = new Item();
         $item -> title = $request->input('title');
         $item -> description = $request->input('description');
         $item -> min_bid = $request->input('min_bid') ?? '1.0';
         $item -> end_date = $request->input('end_date');
-        $item-> condition_id = $request->input('condition_id');
-        if($request->has('is_active')){
-            $item->is_active = '1';
+        $item -> condition_id = $request->input('condition_id');
+        if($request-> has('is_active')){
+            $item -> is_active = '1';
         } else {
-            $item->is_active = '0';
+            $item -> is_active = '0';
         }
-        $item-> user_id = $request->user()->id; 
-        $item->save();
+
+        if($request->file('cover')){
+            $file = $request->file('cover');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $item -> cover = $filename;
+   
+            // File upload location
+            $location = public_path('/images');
+   
+            // Upload file
+            $file->move($location,$filename);
+        }
+
+        $item -> user_id = $request->user()->id; 
+        $item -> save();
         return redirect('/profile');
     }
 
@@ -122,6 +136,9 @@ class PostController extends Controller
     public function destroy($id)
     {
         $items = Item::findOrFail($id);
+        if($items -> cover != null){
+            unlink(public_path('/images/'.$items->cover));
+        }
         $items->delete();
         return redirect('/profile');
     }

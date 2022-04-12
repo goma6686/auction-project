@@ -13,6 +13,12 @@
                         <input type="text" name="title" class="form-control" required="">
                     </div>
                     <div class="form-group pt-4">
+                        <input type="file" name="cover" placeholder="Choose image" id="cover">
+                        @error('cover')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group pt-4">
                         <label for="description">Description</label>
                         <textarea name="description" class="form-control"></textarea>
                     </div>
@@ -34,10 +40,11 @@
                         </select>
                         </div>
                     </div>
-                  <div class="form-check pt-4">
-                    <label for="is_active">Active</label>
-                    <input class="form-check-input" type="checkbox" value="0" name="is_active">
-                  </div>
+                    <div class="form-check pt-4">
+                        <label for="is_active">Active?</label>
+                        <input class="form-check-input" type="checkbox" value="0" name="is_active">
+                    </div>
+                    
                   <button type="submit" class="btn btn-primary">Submit</button>
                   
                 </form>

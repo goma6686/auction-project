@@ -13,26 +13,27 @@
                     </div>
                     <div class="row">
                         @forelse ($items as $item)
+                        @if ($item->is_active == 1)
                         <div class="col-md-6 p-2" style="border-style: double;">
                             <div class="row overflow-hidden flex-md-row  position-relative">
                                 <div class="col p-4 d-flex flex-column position-static">
                                     <h3 class="item-title"> {{ $item->title }} </h3>
-                                <p class="text-muted mb-0">
+                                    <p class="text-muted mb-0">
                                         <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                                                 <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                              </svg>
+                                            </svg>
                                         </span>
                                         <span>
                                             Total Bidders: {{ $item->bidder_count }} {{-- {{ $item->bids()->count() }} --}}
                                         </span>
-                                </p>
-                                <p class="text-muted">
-                                    <span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                          </svg>
-                                    </span>
+                                    </p>
+                                    <p class="text-muted">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </span>
                                     <span>
                                         Condition: 
                                         @foreach($conditions as $condition)
@@ -63,10 +64,11 @@
                                 </p>
                                 </div>
                                 <div class="col-auto d-lg-block float-right mw-10">
-                                    <img class="card-img-top item-thumbnail" src=" {{ asset($item->cover) }} " width="50" height="250">
+                                    <img class="card-img-top item-thumbnail" @if ($item->cover != null) src="images/{{ ($item->cover) }}" @else src="https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_960_720.png" @endif width="50" height="250">
                                 </div>
                             </div>
                         </div>
+                        @endif
                         @endforeach
                     </div>
     

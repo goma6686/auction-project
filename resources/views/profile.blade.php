@@ -21,8 +21,6 @@
                        <div class="profile-header-info">
                           <h4 class="m-t-10 m-b-5">{{ Auth::user()->name }}</h4>
                           <p class="m-b-10">{{ Auth::user()->email }}</p>
-                          <a href="#" class="btn btn-sm btn-dark mb-2">Edit Profile</a>
-                          <a href="{{ route('create-post') }}" class="btn btn-sm btn-dark mb-2">Add item</a>
                        </div>
                        <!-- END profile-header-info -->
                     </div>
@@ -34,25 +32,27 @@
                  <!-- begin tab-content -->
                  <div class="tab-content">
                     <!-- begin #profile-items tab -->
-                    <div class="tab-pane fade active show" id="profile-items">
-                       <div class="row items-row">
-                          
-                       </div>
+                    <div class="tab-pane fade active show mt-3" id="profile-items">
+                        <ol class="breadcrumb">
+                           <a href="#" class="breadcrumb-item">Edit Profile</a>
+                           <a href="{{ route('create-post') }}" class="breadcrumb-item">Add item</a>
+                        </ol>
+                       @php
+                       $counter = 0;
+                       @endphp
                         <table class="table">
                               <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
+                                <th scope="col">Cover</th>
                                 <th scope="col">minBid</th>
                                 <th scope="col">Condition</th>
-                                <th scope="col">Is Active</th>
+                                <th scope="col">Active</th>
                                 <th scope="col">End date</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col"></th>
                                 <th scope="col"></th>
                               </tr>
                             <tbody>
-                              @php
-                              $counter = 0;
-                              @endphp
                               @foreach ($items as $item)
                                @if (Auth::id() == $item->user_id)
                                @php
@@ -61,15 +61,16 @@
                                  <tr scope="row">
                                     <th>{{$counter}}</th>
                                     <td>{{$item->title}}</td>
+                                    <td>@if ($item->cover != NULL) YES @else NO @endif</td>
                                     <td>{{$item->min_bid}}</td>
                                     @foreach ($conditions as $condition)
                                        @if ($item->condition_id == $condition->id)
                                           <td>{{$condition->name}}</td>
                                        @endif
                                     @endforeach
-                                    <td>{{$item->is_active}}</td>
+                                    <td>@if ($item->is_active == 1) YES @else NO @endif</td>
                                     <td>{{$item->end_date}}</td>
-                                    <td>
+                                    <td style="text-align: right;">
                                        <a href="/profile/edit/{{$item->id}}" class="btn btn-sm btn-dark " role="button">Edit</a>
                                     </td>
                                     <td>
@@ -83,6 +84,11 @@
                                @endif
                               @endforeach
                           </table>
+                          @if ($counter == 0)
+                                 <h3 style="text-align: center;">No items found :( <br>
+                                    <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>
+                                 </h3>
+                          @endif
                        <!-- end timeline -->
                     </div>
                     <!-- end #profile-post tab -->

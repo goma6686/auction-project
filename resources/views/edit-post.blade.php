@@ -35,7 +35,7 @@
                         </div>
                     </div>
                   <div class="form-check pt-4">
-                    <label for="is_active">Active</label>
+                    <label for="is_active">Active?</label>
                     <input class="form-check-input" type="checkbox" @if ($item->is_active == 1) @checked(true) @endif value="{{$item->is_active}}" name="is_active">
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
