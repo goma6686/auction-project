@@ -82,7 +82,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $conditions = Condition::all();
+        $item = Item::find($id);
+        return view('edit-post', ['conditions' => $conditions, 'item' => $item]);
     }
 
     /**
@@ -94,7 +96,18 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Item::findOrFail($id);
+
+        $item -> title = $request('title');
+        $item -> description = $request('description');
+        $item -> min_bid = $request('min_bid');
+        $item -> end_date = $request('end_date');
+        $item -> condition_id = $request('condition_id');
+        $item -> is_active = $request('is_active');
+        $item-> user_id = $request->user()->id; 
+        $item->save();
+
+        return redirect('/profile');
     }
 
     /**

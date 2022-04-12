@@ -21,8 +21,8 @@
                         <input type="number" name="min_bid" placeholder="1.0" step="0.01" min="0.1" >
                     </div>
                     <div class="form-group pt-4">
-                        <label for="datemin">Enter auction end date: (after {{ \Carbon\Carbon::now()->toDateString() }})</label><br>
-                        <input class="form-control" type="date" name="end_date" min="\Carbon\Carbon::now()->toDateString()">
+                        <label for="datemin">Enter auction end date and time: (after {{ \Carbon\Carbon::now()->toDateString() }})</label><br>
+                        <input  type="datetime-local" name="end_date" min="\Carbon\Carbon::now()->toDateString()">
                     </div>
                     <div class="form-group pt-4">
                         <div class="col-md-2">
@@ -46,10 +46,11 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(function(){
-  $(".default").datetimepicker({
-      //
-  });
-});
+    config = {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+    }
+
+    flatpickr("input[type=datetime-local]", config);
 </script>
 @endsection

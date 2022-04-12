@@ -70,7 +70,7 @@
                                     <td>{{$item->is_active}}</td>
                                     <td>{{$item->end_date}}</td>
                                     <td>
-                                       <a href="#" class="btn btn-sm btn-dark " role="button">Edit</a>
+                                       <a href="/profile/edit/{{$item->id}}" class="btn btn-sm btn-dark " role="button">Edit</a>
                                     </td>
                                     <td>
                                        <form action="/profile/delete/{{$item->id}}" method="POST">
