@@ -48,14 +48,17 @@
                                     <img class="card-img-top item-thumbnail" @if ($item->cover != null) src="images/{{ ($item->cover) }}" @else src="https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_960_720.png" @endif width="23" height="250">
                                 </div>
                                 <div class="card-footer">
-                                    <p class="mb-0" style="text-align: center">
+                                    <div id="date">
                                         Ends in: 
                                         @php    
                                             $date = new DateTime($item->end_date);
                                             $now = new DateTime($item->created_at);
                                         @endphp
                                         {{ $date->diff($now)->format("%dD %hH %iM"); }}
-                                    </p>
+                                    </div>
+                                    <div id="more">
+                                        <button class="btn btn-sm btn-light">See more</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
