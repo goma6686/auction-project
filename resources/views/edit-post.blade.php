@@ -13,6 +13,16 @@
                         <input type="text" name="title" class="form-control" value="{{ $item->title }}" required>
                     </div>
                     <div class="form-group pt-4">
+                        <label>Cover image</label><br>
+                        @if ($item->cover != null)
+                            <img class="img-fluid"  src="/images/{{ ($item->cover) }}" width="230">
+                        @endif
+                        <input type="file" name="cover" placeholder="Choose cover" id="cover">
+                        @error('cover')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group pt-4">
                         <label for="description">Description</label>
                         <textarea name="description" class="form-control" value="{{ $item->description }}"></textarea>
                     </div>
@@ -39,8 +49,24 @@
                     <input class="form-check-input" type="checkbox" @if ($item->is_active == 1) @checked(true) @endif value="{{$item->is_active}}" name="is_active">
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
-                  
                 </form>
+                <!--
+                <div class="form-group pt-4 ">
+                    <label>Cover image</label><br>
+                    @if ($item->cover != null)
+                        <img class="img-fluid"  src="/images/{{ ($item->cover) }}" width="230">
+                        <form action="/profile/removeImage/{{ $item -> id }}" method="POST">
+                            @csrf
+                            <button onclick="return confirm('{{ __('Ar tikrai norite Ištrinti?')}}')">{{ __('Ištrinti viršelio nuotrauką') }}</button>
+                        </form>
+                    @else
+                        <input type="file" name="cover" placeholder="Choose cover" id="cover">
+                        @error('cover')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    @endif
+                </div>
+            -->
               </div>
         </div>
     </div>

@@ -25,6 +25,7 @@ Route::get('/profile/create', [PostController::class, 'create'])->name('create-p
 Route::get('/profile/edit/{id}', [PostController::class, 'edit'])->name('edit-post');
 Route::post('/profile/update/{id}', [PostController::class, 'update'])->name('update-post');
 Route::delete('/profile/delete/{id}', [PostController::class, 'destroy']);
+Route::delete('/profile/removeImage/{id}', [PostController::class, 'removeImage']);
 
 Route::resource('conditions', 'ConditionController');
 Route::resource('items', 'ItemController');

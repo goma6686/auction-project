@@ -71,7 +71,6 @@
                         @endif
                         @endforeach
                     </div>
-                    {!! $items->links() !!}
                      {{--   {{ $items->appends(request()->except('page'))->links() }} --}}
             </div>
         </div>

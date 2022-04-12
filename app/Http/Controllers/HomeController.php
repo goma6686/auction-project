@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\User;
 use App\Models\Condition;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class HomeController extends Controller
 {
@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
 
     public function index(){
-        $items = Item::paginate(8);
+        $items = Item::all();
         $conditions = Condition::all();
         return view('dashboard', ['items' => $items, 'conditions' => $conditions]);
     }

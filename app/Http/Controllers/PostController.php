@@ -108,7 +108,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         $item = Item::findOrFail($id);
 
@@ -121,6 +121,21 @@ class PostController extends Controller
             $item->is_active = '1';
         } else {
             $item->is_active = '0';
+        }
+        if($request->cover != ''){
+            if($item->cover != null && $item->cover != ''){
+                $old = public_path().'/images/'.$item->cover;
+                unlink($old);
+            }
+            $file = $request->file('cover');
+            $filename = time().'_'.$file->getClientOriginalName();
+            $item -> cover = $filename;
+   
+            // File upload location
+            $location = public_path('/images');
+   
+            // Upload file
+            $file->move($location,$filename);
         }
         $item->save();
 
@@ -141,5 +156,13 @@ class PostController extends Controller
         }
         $items->delete();
         return redirect('/profile');
+    }
+
+    public function removeImage($id){
+        $item = Item::findOrFail($id);
+        unlink(public_path('/images/'.$item->cover));
+        $item -> cover = null;
+        $item -> save();
+        //return redirect()->back();
     }
 }
