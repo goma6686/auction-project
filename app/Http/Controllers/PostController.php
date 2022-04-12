@@ -19,7 +19,7 @@ class PostController extends Controller
     public function index(){
         $data = User::all();
         $conditions = Condition::all();
-        return view('profile', ['users' => $data, 'items' => DB::table('items')->orderBy('id', 'desc')->paginate(5), 'conditions' => $conditions]);
+        return view('profile', ['users' => $data, 'items' => DB::table('items')->orderBy('id', 'desc')->paginate(6), 'conditions' => $conditions]);
     }
 
     /**

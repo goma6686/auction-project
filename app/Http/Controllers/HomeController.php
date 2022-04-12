@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\User;
 use App\Models\Condition;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
 
     public function index(){
-        $items = Item::all();
+        $items = Item::orderBy('created_at', 'desc')->get();
         $conditions = Condition::all();
         return view('dashboard', ['items' => $items, 'conditions' => $conditions]);
     }

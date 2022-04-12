@@ -3,7 +3,7 @@
 <link href = "{{asset('css/profile.css')}}" rel = "stylesheet">
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col">
            <div id="content" class="content content-full-width">
               <div class="profile">
                  <div class="profile-header">
@@ -33,10 +33,10 @@
                  <div class="tab-content">
                     <!-- begin #profile-items tab -->
                     <div class="tab-pane fade active show mt-3" id="profile-items">
-                        <ol class="breadcrumb">
-                           <a href="#" class="breadcrumb-item">Edit Profile</a>
-                           <a href="{{ route('create-post') }}" class="breadcrumb-item">Add item</a>
-                        </ol>
+                     <div class="btn-group" role="group">
+                        <a href="{{ route('create-post') }}" role="button" class="btn btn-outline-dark">Add Item</a>
+                        <a role="button" class="btn btn-outline-dark">???</a>
+                      </div>
                         @if (isset($items))
                         <table class="table table-hover table-striped">
                            <thead>
@@ -64,14 +64,32 @@
                                  <tr scope="row">
                                     <th>{{$counter}}</th>
                                     <td>{{$item->title}}</td>
-                                    <td>@if ($item->cover != NULL) YES @else NO @endif</td>
+                                    <td>@if ($item->cover != NULL) 
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                        </svg>
+                                        @else 
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                          <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                        </svg>
+                                        @endif</td>
                                     <td>{{$item->min_bid}}</td>
                                     @foreach ($conditions as $condition)
                                        @if ($item->condition_id == $condition->id)
                                           <td>{{$condition->name}}</td>
                                        @endif
                                     @endforeach
-                                    <td>@if ($item->is_active == 1) YES @else NO @endif</td>
+                                    <td>@if ($item->is_active == 1) 
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                        </svg>
+                                       @else 
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                          <path fill-rule="evenodd" d="M13.854 2.146a.5.5 0 0 1 0 .708l-11 11a.5.5 0 0 1-.708-.708l11-11a.5.5 0 0 1 .708 0Z"/>
+                                          <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
+                                        </svg>
+                                       @endif</td>
                                     <td>{{$item->end_date}}</td>
                                     <td style="text-align: right;">
                                        <a href="/profile/edit/{{$item->id}}" class="btn btn-sm btn-dark " role="button">Edit</a>
