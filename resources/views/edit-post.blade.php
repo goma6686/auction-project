@@ -4,28 +4,33 @@
     <h1 class="latest text-center mb-2">Create Auction Post</h1>
     {{ Html::ul($errors->all()) }}
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 p-5">
-        <div class="p-6 bg-white border-b border-gray-200">
             <div class="card-body">
+                <label>Cover image</label>
+                @if ($item->cover != null)
                 <form action="/profile/removeImage/{{ $item->id }}" method="post">
                     @csrf
                     @method('delete')
-                    <button onclick="return confirm('{{ __('Ar tikrai norite Ištrinti?')}}')">{{ __('Ištrinti viršelio nuotrauką') }}</button>
+                    <button class="btn btn-sm btn-outline-danger" > Delete cover
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                          </svg>
+                    </button>
                 </form>
+                @endif
                 <form enctype="multipart/form-data" method="POST" action="{{route('update-post', array($item->id))}}">
                  @csrf
-                  <div class="form-group">
+                 <div class="form-group pt-2">
+                    <input type="file" name="cover" id="cover">
+                    @error('cover')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                    @enderror
+                    @if ($item->cover != null)
+                        <br><img class="img-fluid mt-2"  src="/images/{{ ($item->cover) }}" width="230">
+                    @endif
+                </div>
+                  <div class="form-group pt-4">
                         <label>Title</label>
                         <input type="text" name="title" class="form-control" value="{{ $item->title }}" required>
-                    </div>
-                    <div class="form-group pt-4">
-                        <label>Cover image</label><br>
-                        @if ($item->cover != null)
-                            <img class="img-fluid"  src="/images/{{ ($item->cover) }}" width="230">
-                        @endif
-                        <input type="file" name="cover" id="cover">
-                        @error('cover')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
                     </div>
                     <div class="form-group pt-4">
                         <label for="description">Description</label>
@@ -55,25 +60,7 @@
                   </div>
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-                <!--
-                <div class="form-group pt-4 ">
-                    <label>Cover image</label><br>
-                    @if ($item->cover != null)
-                        <img class="img-fluid"  src="/images/{{ ($item->cover) }}" width="230">
-                        <form action="/profile/removeImage/{{ $item -> id }}" method="POST">
-                            @csrf
-                            <button onclick="return confirm('{{ __('Ar tikrai norite Ištrinti?')}}')">{{ __('Ištrinti viršelio nuotrauką') }}</button>
-                        </form>
-                    @else
-                        <input type="file" name="cover" placeholder="Choose cover" id="cover">
-                        @error('cover')
-                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                    @endif
-                </div>
-            -->
               </div>
-        </div>
     </div>
 </div>
 <script type="text/javascript">

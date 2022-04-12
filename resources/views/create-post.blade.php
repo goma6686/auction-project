@@ -4,7 +4,6 @@
     <h1 class="latest text-center mb-2">Create Auction Post</h1>
     {{ Html::ul($errors->all()) }}
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 p-5">
-        <div class="p-6 bg-white border-b border-gray-200">
             <div class="card-body">
                 <form enctype="multipart/form-data" method="POST" action="/profile">
                  @csrf
@@ -49,7 +48,7 @@
                   
                 </form>
               </div>
-            </div>
+
     </div>
 </div>
 <script type="text/javascript">
