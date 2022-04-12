@@ -25,7 +25,7 @@
                                             </svg>
                                         </span>
                                         <span>
-                                            Total Bidders: {{ $item->bidder_count }} {{-- {{ $item->bids()->count() }} --}}
+                                            Total Bidders: {{ $item->bidder_count }}
                                         </span>
                                     </p>
                                     <p class="text-muted">
@@ -71,7 +71,7 @@
                         @endif
                         @endforeach
                     </div>
-    
+                    {!! $items->links() !!}
                      {{--   {{ $items->appends(request()->except('page'))->links() }} --}}
             </div>
         </div>

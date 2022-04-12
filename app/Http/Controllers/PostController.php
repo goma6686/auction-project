@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\User;
 use App\Models\Condition;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -17,9 +18,8 @@ class PostController extends Controller
      */
     public function index(){
         $data = User::all();
-        $items = Item::all();
         $conditions = Condition::all();
-        return view('profile', ['users' => $data, 'items' => $items, 'conditions' => $conditions]);
+        return view('profile', ['users' => $data, 'items' => DB::table('items')->orderBy('id', 'desc')->paginate(5), 'conditions' => $conditions]);
     }
 
     /**

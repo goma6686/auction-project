@@ -37,10 +37,9 @@
                            <a href="#" class="breadcrumb-item">Edit Profile</a>
                            <a href="{{ route('create-post') }}" class="breadcrumb-item">Add item</a>
                         </ol>
-                       @php
-                       $counter = 0;
-                       @endphp
-                        <table class="table">
+                        @if (isset($items))
+                        <table class="table table-hover table-striped">
+                           <thead>
                               <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Title</th>
@@ -52,7 +51,11 @@
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                               </tr>
+                           </thead>
                             <tbody>
+                              @php
+                              $counter = 0;
+                              @endphp
                               @foreach ($items as $item)
                                @if (Auth::id() == $item->user_id)
                                @php
@@ -84,10 +87,11 @@
                                @endif
                               @endforeach
                           </table>
-                          @if ($counter == 0)
-                                 <h3 style="text-align: center;">No items found :( <br>
-                                    <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>
-                                 </h3>
+                           {!! $items->links() !!}
+                          @else
+                          <h3 style="text-align: center;">No items found :( <br>
+                           <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>
+                           </h3>
                           @endif
                        <!-- end timeline -->
                     </div>
