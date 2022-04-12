@@ -85,7 +85,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $conditions = Condition::all();
+        $item = Item::find($id);
+        return view('show-post', ['item' => $item]);
     }
 
     /**

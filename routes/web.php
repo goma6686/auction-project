@@ -19,6 +19,7 @@ use App\Http\Controllers\ProfileController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
+Route::get('/item/{id}', [PostController::class, 'show'])->name('show-post');
 Route::get('/profile', [PostController::class, 'index'])->name('profile');
 Route::post('/profile', [PostController::Class, 'store']);
 Route::get('/profile/create', [PostController::class, 'create'])->name('create-post');
@@ -26,6 +27,3 @@ Route::get('/profile/edit/{id}', [PostController::class, 'edit'])->name('edit-po
 Route::post('/profile/update/{id}', [PostController::class, 'update'])->name('update-post');
 Route::delete('/profile/delete/{id}', [PostController::class, 'destroy']);
 Route::delete('/profile/removeImage/{id}', [PostController::class, 'removeImage']);
-
-Route::resource('conditions', 'ConditionController');
-Route::resource('items', 'ItemController');

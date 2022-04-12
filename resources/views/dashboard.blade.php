@@ -14,10 +14,13 @@
                     <div class="row">
                         @forelse ($items as $item)
                         @if ($item->is_active == 1)
-                        <div class="col-md-6 p-2" style="border-style: double;">
+                        <div class="col-sm-6 p-2" style="border-style: double;">
                             <div class="row overflow-hidden flex-md-row  position-relative">
-                                <div class="col p-4 d-flex flex-column position-static">
+                                <div class="card-title">
                                     <h3 class="item-title" style="text-align: center"> {{ $item->title }} </h3>
+                                </div>
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    
                                     <p class="text-muted mb-0">
                                         <span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
@@ -42,13 +45,13 @@
                                             @endif 
                                         @endforeach
                                     </span>
-                                </p>
+                                    </p>
                                 </div>
                                 <div class="col-auto d-lg-block float-right mw-10">
                                     <img class="card-img-top item-thumbnail" @if ($item->cover != null) src="images/{{ ($item->cover) }}" @else src="https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_960_720.png" @endif width="23" height="250">
                                 </div>
-                                <div class="card-footer">
-                                    <div id="date">
+                                <div class="card-footer" id="two-cols">
+                                    <div id="left-item">
                                         Ends in: 
                                         @php    
                                             $date = new DateTime($item->end_date);
@@ -56,8 +59,8 @@
                                         @endphp
                                         {{ $date->diff($now)->format("%dD %hH %iM"); }}
                                     </div>
-                                    <div id="more">
-                                        <button class="btn btn-sm btn-light">See more</button>
+                                    <div id="right-item">
+                                        <a href="/item/{{$item->id}}" role="button" class="btn btn-sm btn-light">See more</a>
                                     </div>
                                 </div>
                             </div>
