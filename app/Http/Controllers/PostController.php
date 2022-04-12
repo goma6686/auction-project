@@ -163,6 +163,6 @@ class PostController extends Controller
         unlink(public_path('/images/'.$item->cover));
         $item -> cover = null;
         $item -> save();
-        //return redirect()->back();
+        return redirect()->back();
     }
 }

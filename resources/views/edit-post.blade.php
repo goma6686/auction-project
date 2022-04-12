@@ -6,6 +6,11 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 p-5">
         <div class="p-6 bg-white border-b border-gray-200">
             <div class="card-body">
+                <form action="/profile/removeImage/{{ $item->id }}" method="post">
+                    @csrf
+                    @method('delete')
+                    <button onclick="return confirm('{{ __('Ar tikrai norite Ištrinti?')}}')">{{ __('Ištrinti viršelio nuotrauką') }}</button>
+                </form>
                 <form enctype="multipart/form-data" method="POST" action="{{route('update-post', array($item->id))}}">
                  @csrf
                   <div class="form-group">
@@ -17,7 +22,7 @@
                         @if ($item->cover != null)
                             <img class="img-fluid"  src="/images/{{ ($item->cover) }}" width="230">
                         @endif
-                        <input type="file" name="cover" placeholder="Choose cover" id="cover">
+                        <input type="file" name="cover" id="cover">
                         @error('cover')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
