@@ -10,7 +10,7 @@
                  @csrf
                   <div class="form-group">
                         <label>Title</label>
-                        <input type="text" id="title" name="title" class="form-control" required="">
+                        <input type="text" name="title" class="form-control" required="">
                     </div>
                     <div class="form-group pt-4">
                         <label for="description">Description</label>
@@ -22,7 +22,7 @@
                     </div>
                     <div class="form-group pt-4">
                         <label for="datemin">Enter auction end date and time: (after {{ \Carbon\Carbon::now()->toDateString() }})</label><br>
-                        <input  type="datetime-local" name="end_date" min="\Carbon\Carbon::now()->toDateString()">
+                        <input  type="datetime-local" name="end_date" required>
                     </div>
                     <div class="form-group pt-4">
                         <div class="col-md-2">
@@ -49,6 +49,7 @@
     config = {
         enableTime: true,
         dateFormat: "Y-m-d H:i",
+        minDate: "\Carbon\Carbon::now()->toDateString()",
     }
 
     flatpickr("input[type=datetime-local]", config);

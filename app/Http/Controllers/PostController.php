@@ -94,17 +94,20 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $item = Item::findOrFail($id);
 
-        $item -> title = $request('title');
-        $item -> description = $request('description');
-        $item -> min_bid = $request('min_bid');
-        $item -> end_date = $request('end_date');
-        $item -> condition_id = $request('condition_id');
-        $item -> is_active = $request('is_active');
-        $item-> user_id = $request->user()->id; 
+        $item -> title = request('title');
+        $item -> description = request('description');
+        $item -> min_bid = request('min_bid');
+        $item -> end_date = request('end_date');
+        $item -> condition_id = request('condition_id');
+        if(request('is_active') != NULL){
+            $item->is_active = '1';
+        } else {
+            $item->is_active = '0';
+        }
         $item->save();
 
         return redirect('/profile');
