@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('cover')->nullable();
             $table->boolean('is_active')->default(false);
             $table->dateTime('end_date');
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();
         });
     }

@@ -1,3 +1,4 @@
+
 @extends('layout.app')
 @section('content')
 <div class="container">
@@ -11,7 +12,7 @@
             <h4 class="card-title text-center" style="font-weight: bold;">{{ $item->title }}</h4>
             <h6 class="card-title text-center">{{ $item->description }}</h5>
             <p class="card-text">
-              AAAAAAAAAAAAAAAAAAAAA
+              AAAAAAAAAAAAphpAAAAAAAAA
             </p>
           </div>
         </div>

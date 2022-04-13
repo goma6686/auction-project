@@ -8,6 +8,7 @@
   <title>Auction</title>
 
         <!-- Scripts -->
+        <script data-main="scripts/app" src="js/require.js"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
 
         <!-- Fonts -->

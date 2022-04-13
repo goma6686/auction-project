@@ -55,7 +55,7 @@
                                         Ends in: 
                                         @php    
                                             $date = new DateTime($item->end_date);
-                                            $now = new DateTime($item->created_at);
+                                            $now = new DateTime(\Carbon\Carbon::now());
                                         @endphp
                                         {{ $date->diff($now)->format("%dD %hH %iM"); }}
                                     </div>

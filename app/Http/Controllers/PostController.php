@@ -114,6 +114,13 @@ class PostController extends Controller
     {
         $item = Item::findOrFail($id);
 
+        request()->validate([
+            'title' => 'required',
+            'condition_id' => 'required',
+            'end_date' => 'required|date|after:today',
+            'cover' => 'mimes:jpg,png,jpeg,svg|image',
+        ]);
+
         $item -> title = request('title');
         $item -> description = request('description');
         $item -> min_bid = request('min_bid');
