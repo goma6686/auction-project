@@ -58,6 +58,11 @@
                                             $now = new DateTime(\Carbon\Carbon::now());
                                         @endphp
                                         {{ $date->diff($now)->format("%dD %hH %iM"); }}
+                                        <div class="middle">
+                                            <p>
+                                            <div class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date)->format('Y/m/d h:i:s') }}"></div>
+                                            </p>
+                                         </div>
                                     </div>
                                     <div id="right-item">
                                         <a href="/item/{{$item->id}}" role="button" class="btn btn-sm btn-light">See more</a>
@@ -73,4 +78,5 @@
         </div>
     </div>
 </section>
+@include('layout.timer')
 @endsection
