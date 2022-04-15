@@ -27,3 +27,4 @@ Route::get('/profile/edit/{id}', [PostController::class, 'edit'])->name('edit-po
 Route::post('/profile/update/{id}', [PostController::class, 'update'])->name('update-post');
 Route::delete('/profile/delete/{id}', [PostController::class, 'destroy']);
 Route::delete('/profile/removeImage/{id}', [PostController::class, 'removeImage']);
+

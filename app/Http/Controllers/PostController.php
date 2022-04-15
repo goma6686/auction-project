@@ -44,7 +44,6 @@ class PostController extends Controller
     {
         request()->validate([
             'title' => 'required',
-            'condition_id' => 'required',
             'end_date' => 'required|date|after:today',
             'cover' => 'mimes:jpg,png,jpeg,svg|image',
         ]);
@@ -87,7 +86,7 @@ class PostController extends Controller
     {
         $conditions = Condition::all();
         $item = Item::find($id);
-        return view('show-post', ['item' => $item]);
+        return view('show-post', ['item' => $item, 'conditions' => $conditions]);
     }
 
     /**

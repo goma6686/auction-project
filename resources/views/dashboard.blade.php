@@ -48,21 +48,21 @@
                                     </p>
                                 </div>
                                 <div class="col-auto d-lg-block float-right mw-10">
-                                    <img class="card-img-top item-thumbnail" @if ($item->cover != null) src="images/{{ ($item->cover) }}" @else src="https://cdn.pixabay.com/photo/2021/08/21/08/09/ban-6562104_960_720.png" @endif width="23" height="250">
+                                    <img class="card-img-top item-thumbnail p-2" @if ($item->cover != null) src="images/{{ ($item->cover) }}" @else src="https://2.bp.blogspot.com/-muVbmju-gkA/Vir94NirTeI/AAAAAAAAT9c/VoHzHZzQmR4/s580/placeholder-image.jpg" @endif width="23" height="250">
                                 </div>
                                 <div class="card-footer" id="two-cols">
                                     <div id="left-item">
-                                        Ends in: 
                                         @php    
                                             $date = new DateTime($item->end_date);
                                             $now = new DateTime(\Carbon\Carbon::now());
                                         @endphp
-                                        {{ $date->diff($now)->format("%dD %hH %iM"); }}
-                                        <div class="middle">
-                                            <p>
-                                            <div class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date)->format('Y/m/d h:i:s') }}"></div>
-                                            </p>
+                                        @if ($date->diff($now)->format("%H") < 1)
+                                        <div>
+                                            <div class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date)->format('Y/m/d H:i:s') }}"></div>
                                          </div>
+                                        @else
+                                            {{ $date->diff($now)->format("Ends in %dD %hH %iM"); }}
+                                        @endif
                                     </div>
                                     <div id="right-item">
                                         <a href="/item/{{$item->id}}" role="button" class="btn btn-sm btn-light">See more</a>

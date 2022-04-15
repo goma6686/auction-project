@@ -18,7 +18,7 @@
             </div>
             <div class="form-group pt-4">
                 <label for="description">Description</label>
-                <textarea name="description" class="form-control"></textarea>
+                <textarea name="description" type="text" rows="5" class="form-control"></textarea>
             </div>
             <div class="form-group pt-4">
                 <label for="min_bid">Minimal bid:</label><br>

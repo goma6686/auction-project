@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('content')
 <div class="py-12">
-    <h1 class="latest text-center mb-2">Create Auction Post</h1>
+    <h1 class="latest text-center mb-2">Edit Auction Post</h1>
     {{ Html::ul($errors->all()) }}
     <div class="max-w-7xl sm:px-6 lg:px-8 p-5">
         <label>Cover image</label>
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group pt-4">
                 <label for="description">Description</label>
-                <textarea name="description" class="form-control" value="{{ $item->description }}"></textarea>
+                <textarea name="description" type="text" rows="5" class="form-control">{{ $item->description }}</textarea>
             </div>
             <div class="form-group pt-4">
                 <label for="min_bid">Minimal bid:</label><br>

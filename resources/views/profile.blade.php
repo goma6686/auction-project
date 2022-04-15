@@ -36,9 +36,19 @@
                         <a href="{{ route('create-post') }}" role="button" class="btn btn-outline-dark">Add Item</a>
                         <a role="button" class="btn btn-outline-dark">???</a>
                       </div>
-                      @include('layout.table')
+                      <div class="container mt-5">
+                        @if (isset($items))
+                           @include('layout.table')
+                           <div class="d-flex justify-content-center">
+                              {!! $items->links() !!}
+                           </div>
+                        @else
+                           <h3 style="text-align: center;">No items found :( <br>
+                              <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>
+                           </h3>
+                        @endif
+                      </div>
                        <!-- end timeline -->
-                       {!! $items->links() !!}
                     </div>
                     <!-- end #profile-post tab -->
                  </div>
