@@ -18,6 +18,7 @@ class Item extends Model
         'min_bid',
         'end_date',
         'condition_id',
+        'price',
         'is_active',
     ];
 }

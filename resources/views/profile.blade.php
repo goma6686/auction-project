@@ -39,9 +39,6 @@
                       <div class="container mt-5">
                         @if (isset($items))
                            @include('layout.table')
-                           <div class="d-flex justify-content-center">
-                              {!! $items->links() !!}
-                           </div>
                         @else
                            <h3 style="text-align: center;">No items found :( <br>
                               <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>

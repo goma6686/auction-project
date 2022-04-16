@@ -18,8 +18,9 @@ class PostController extends Controller
      */
     public function index(){
         $data = User::all();
+        $items = Item::all();
         $conditions = Condition::all();
-        return view('profile', ['users' => $data, 'items' => DB::table('items')->orderBy('id', 'desc')->paginate(6), 'conditions' => $conditions]);
+        return view('profile', ['users' => $data, 'items' => $items, 'conditions' => $conditions]);
     }
 
     /**
@@ -45,7 +46,8 @@ class PostController extends Controller
         request()->validate([
             'title' => 'required',
             'end_date' => 'required|date|after:today',
-            'cover' => 'mimes:jpg,png,jpeg,svg|image',
+            'price' => 'required',
+            'cover' => 'mimes:jpg,png,jpeg,svg|image|max:5120',
         ]);
         $item = new Item();
         $item -> title = $request->input('title');
@@ -53,6 +55,7 @@ class PostController extends Controller
         $item -> min_bid = $request->input('min_bid') ?? '1.0';
         $item -> end_date = $request->input('end_date');
         $item -> condition_id = $request->input('condition_id');
+        $item -> price = $request->input('price');
         if($request-> has('is_active')){
             $item -> is_active = '1';
         } else {
@@ -115,9 +118,10 @@ class PostController extends Controller
 
         request()->validate([
             'title' => 'required',
+            'price' => 'required',
             'condition_id' => 'required',
             'end_date' => 'required|date|after:today',
-            'cover' => 'mimes:jpg,png,jpeg,svg|image',
+            'cover' => 'mimes:jpg,png,jpeg,svg|image|max:5120',
         ]);
 
         $item -> title = request('title');
@@ -125,6 +129,7 @@ class PostController extends Controller
         $item -> min_bid = request('min_bid');
         $item -> end_date = request('end_date');
         $item -> condition_id = request('condition_id');
+        $item -> price = request('price');
         if(request('is_active') != NULL){
             $item->is_active = '1';
         } else {

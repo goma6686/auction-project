@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('user_id')->unsigned()->constrained('users');
             $table->float('min_bid')->unsigned()->default('1.0')->create();
             $table->integer('bidder_count')->unsigned()->default(0);
-            $table->integer('bid_sum')->unsigned()->default(0);
+            $table->float('price')->unsigned();
             $table->string('cover')->nullable();
             $table->boolean('is_active')->default(false);
             $table->dateTime('end_date');
