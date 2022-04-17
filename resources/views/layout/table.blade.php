@@ -83,5 +83,7 @@
     </tbody>
 </table>
 @if($counter == 0)
-<h1 style="text-align: center">No Items Found</h1>
+<h3 style="text-align: center;">No items found :( <br>
+    <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>
+ </h3>
 @endif

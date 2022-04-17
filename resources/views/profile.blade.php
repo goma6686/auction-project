@@ -21,6 +21,7 @@
                        <div class="profile-header-info">
                           <h4 class="m-t-10 m-b-5">{{ Auth::user()->name }}</h4>
                           <p class="m-b-10">{{ Auth::user()->email }}</p>
+                          <a href="{{ route('create-post') }}" role="button" class="btn btn-dark">Add Item</a>
                        </div>
                        <!-- END profile-header-info -->
                     </div>
@@ -32,14 +33,10 @@
                  <div class="tab-content">
                     <!-- begin #profile-items tab -->
                     <div class="tab-pane fade active show mt-3" id="profile-items">
-                        <a href="{{ route('create-post') }}" role="button" class="btn btn-outline-dark">Add Item</a>
-                      <div class="container mt-5">
+                       
+                      <div class="container mt-2">
                         @if (isset($items))
                            @include('layout.table')
-                        @else
-                           <h3 style="text-align: center;">No items found :( <br>
-                              <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>
-                           </h3>
                         @endif
                       </div>
                        <!-- end timeline -->

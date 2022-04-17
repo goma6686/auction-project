@@ -3,7 +3,7 @@
 <div class="py-12">
     <h1 class="latest text-center mb-2">Edit Auction Post</h1>
     {{ Html::ul($errors->all()) }}
-    <div class="max-w-7xl sm:px-6 lg:px-8 p-5">
+    <div class="max-w-5md sm:px-6 lg:px-8 p-5">
         <label>Cover image</label>
         @if ($item->cover != null)
         <form action="/profile/removeImage/{{ $item->id }}" method="post">

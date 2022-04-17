@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<div class="container-xxl">
+<div class="container-sm">
     <div class="d-flex">
         <div class="nav flex-column nav-pills me-3 align-items-start" id="v-pills-tab" role="tablist" aria-orientation="vertical">
           <button class="nav-link active" id="v-pills-all-tab" data-bs-toggle="pill" data-bs-target="#v-pills-all" type="button" role="tab" aria-controls="v-pills-all" aria-selected="true">All Items</button>

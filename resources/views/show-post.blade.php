@@ -44,7 +44,7 @@
                 </div>
               @else
               <b>Time left:</b>
-                {{ $date->diff($now)->format("%dD %hH %iM"); }}
+                {{ $date->diff($now)->format("%dD %hH %iM");}}
               @endif
             </h5>
           </div>
