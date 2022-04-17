@@ -18,7 +18,7 @@ class ItemFactory extends Factory
     {
         return [
             'title' => $this->faker->words(3, true), //true - string returned instead of array
-            'description' => $this->faker->text(50),
+            'description' => $this->faker->paragraph(),
             'condition_id' => $this->faker->numberBetween(1,5),
             'user_id' => $this->faker->numberBetween(1,6),
             'min_bid' => $this->faker->randomFloat(4, 0, 100),

@@ -89,7 +89,7 @@ class PostController extends Controller
     {
         $conditions = Condition::all();
         $item = Item::find($id);
-        return view('show-post', ['item' => $item, 'conditions' => $conditions]);
+        return view('show-post', ['item' => $item, 'conditions' => $conditions], );
     }
 
     /**
@@ -177,5 +177,12 @@ class PostController extends Controller
         $item -> cover = null;
         $item -> save();
         return redirect()->back();
+    }
+
+    public function updatePrice($id){
+        $item = Item::findOrFail($id);
+        $item -> price = $request->input('price') ?? $item -> price;
+        $item -> save();
+        return redirect('/');
     }
 }
