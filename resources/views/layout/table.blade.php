@@ -20,7 +20,7 @@
         @foreach ($items as $item)
             @if (Auth::id() == $item->user_id)
             @php
-                $counter++;
+            $counter++;
             @endphp
             <tr scope="row">
                 <th>{{$counter}}</th>
@@ -82,3 +82,6 @@
         @endforeach
     </tbody>
 </table>
+@if($counter == 0)
+<h1 style="text-align: center">No Items Found</h1>
+@endif

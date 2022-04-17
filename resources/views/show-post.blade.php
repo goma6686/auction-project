@@ -63,7 +63,7 @@
                   <p class="text-muted text-right">Enter {{$price}}€ or more</p>
             </div>
             <div id="right-item">
-              <h5>Current bid, €: {{$item->price}}</h5>
+              <h5>Current bid, €:<br> {{$item->price}}</h5>
               <button class="btn btn-dark text-right" type="submit">Place bid</button>
             </div>
           </div>

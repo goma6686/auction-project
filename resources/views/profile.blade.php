@@ -32,10 +32,7 @@
                  <div class="tab-content">
                     <!-- begin #profile-items tab -->
                     <div class="tab-pane fade active show mt-3" id="profile-items">
-                     <div class="btn-group" role="group">
                         <a href="{{ route('create-post') }}" role="button" class="btn btn-outline-dark">Add Item</a>
-                        <a role="button" class="btn btn-outline-dark">???</a>
-                      </div>
                       <div class="container mt-5">
                         @if (isset($items))
                            @include('layout.table')
