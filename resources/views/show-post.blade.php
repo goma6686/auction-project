@@ -59,11 +59,10 @@
                 $b = $item->price;
                 $price = $a + $b;
                 @endphp
-                <input type="number" name="price" placeholder="Bid amount" step="0.01" min={{$price}}" value="">
-                <p class="text-muted text-right">Enter {{$price}}€ or more</p>
+                <input type="number" name="price" placeholder="Bid amount" step="0.01" min="{{$price}}">
+                  <p class="text-muted text-right">Enter {{$price}}€ or more</p>
             </div>
             <div id="right-item">
-             {{-- <input type="number" name="pro" placeholder="Bid amount" step="0.01" min="">--}}
               <h5>Current bid, €: {{$item->price}}</h5>
               <button class="btn btn-dark text-right" type="submit">Place bid</button>
             </div>

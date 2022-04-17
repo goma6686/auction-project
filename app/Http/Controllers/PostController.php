@@ -181,8 +181,9 @@ class PostController extends Controller
 
     public function updatePrice($id){
         $item = Item::findOrFail($id);
-        $item -> price = $request->input('price') ?? $item -> price;
+        $item -> price = request('price');
+        $item -> bidder_count++;
         $item -> save();
-        return redirect('/');
+        return redirect()->back();
     }
 }
