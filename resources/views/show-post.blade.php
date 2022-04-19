@@ -29,6 +29,7 @@
               {{$item->bidder_count}}
             </h5>
             <h5>
+              <span id="bidder-count-{{ $item->id }}">{{ $item->bidder_count }}</span>
               @php    
                 $date = new DateTime($item->end_date);
                 $now = new DateTime(\Carbon\Carbon::now());
@@ -64,7 +65,7 @@
             </div>
             <div id="right-item">
               <h5>Current bid, €:<br> {{$item->price}}</h5>
-              <button class="btn btn-dark text-right" type="submit">Place bid</button>
+              <button onclick="updateCount(event);" data-item-id="{{ $item->id }} class="btn btn-dark text-right" type="submit">Place bid</button>
             </div>
           </div>
         </form>
@@ -73,5 +74,23 @@
     </div>
   </div>
 </div>
+@section('js')
+    <script>
+        var updateItemStats = {
+            Like: function (chirpId) {
+                document.querySelector('#bidder-count-' + itemId).textContent++;
+            }
+        };
+    
+        var updatePriceCount = function (event) {
+            var itemId = event.target.dataset.itemId;
+            var action = event.target.textContent;
+            updateItemStats[action](itemId);
+            axios.post('/item/updatePriceCount/' + itemId,
+                { action: action });
+        };
+    
+    </script>
+    @endsection
 @include('layout.timer')
 @endsection

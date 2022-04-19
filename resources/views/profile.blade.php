@@ -22,6 +22,7 @@
                           <h4 class="m-t-10 m-b-5">{{ Auth::user()->name }}</h4>
                           <p class="m-b-10">{{ Auth::user()->email }}</p>
                           <a href="{{ route('create-post') }}" role="button" class="btn btn-dark">Add Item</a>
+                          <a href="{{ route('test-env') }}" role="button" class="btn btn-dark">Test env</a>
                        </div>
                        <!-- END profile-header-info -->
                     </div>

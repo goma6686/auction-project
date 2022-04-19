@@ -179,11 +179,20 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-    public function updatePrice($id){
+    public function updatePriceCount($id){
+        /*
         $item = Item::findOrFail($id);
         $item -> price = request('price');
         $item -> bidder_count++;
         $item -> save();
         return redirect()->back();
+        */
+        $action = $request->get('action');
+        $item = Item::findOrFail($id);
+        $item -> price = request('price');
+        $item -> bidder_count++;
+        $item -> save();
+        event(new ChirpAction($id, $action)); // fire the event
+        return '';
     }
 }

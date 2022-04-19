@@ -1,5 +1,5 @@
 <div class="card">
-    <img class="card-img-top" @if ($item->cover != null) src="/images/{{ ($item->cover) }}" @else src="https://bit.ly/3vrnLpm" @endif >
+    <img class="card-img-top" style="object-fit:fit" @if ($item->cover != null) src="/images/{{ ($item->cover) }}" @else src="https://bit.ly/3vrnLpm" @endif >
   <div class="card-body">
     <h5 class="card-title text-center">{{ $item->title }}</h5>
     <div id="two-cols">

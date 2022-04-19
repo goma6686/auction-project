@@ -32,4 +32,10 @@ class HomeController extends Controller
         return view('dashboard', ['items' => $items, 'conditions' => $conditions]);
     }
 
+    public function testIndex(){
+        $items = Item::orderBy('created_at', 'desc')->get();
+        $conditions = Condition::all();
+        return view('testIndex', ['items' => $items, 'conditions' => $conditions]);
+    }
+
 }
