@@ -179,7 +179,7 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-    public function updatePriceCount($id){
+    public function updatePriceCount(Request $request, $id){
         /*
         $item = Item::findOrFail($id);
         $item -> price = request('price');
@@ -192,7 +192,7 @@ class PostController extends Controller
         $item -> price = request('price');
         $item -> bidder_count++;
         $item -> save();
-        event(new ChirpAction($id, $action)); // fire the event
+        event(new updateCount($id, $action)); // fire the event
         return '';
     }
 }

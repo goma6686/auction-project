@@ -55,17 +55,12 @@
           <div class="card-footer form-group" id="two-cols">
             <div class="text-left pt-2" id="left-item">
               <h5>Place a bid, €:</h5>
-                @php
-                $a = $item->min_bid;
-                $b = $item->price;
-                $price = $a + $b;
-                @endphp
-                <input type="number" name="price" placeholder="Bid amount" step="0.01" min="{{$price}}">
-                  <p class="text-muted text-right">Enter {{$price}}€ or more</p>
+                <input type="number" name="price" placeholder="Bid amount" step="0.01" min="{{$item->min_bid + $item->price}}">
+                  <p class="text-muted text-right">Enter {{$item->min_bid + $item->price}}€ or more</p>
             </div>
             <div id="right-item">
               <h5>Current bid, €:<br> {{$item->price}}</h5>
-              <button onclick="updateCount(event);" data-item-id="{{ $item->id }} class="btn btn-dark text-right" type="submit">Place bid</button>
+              <button onclick="updateCount(event);" data-item-id="{{ $item->id }}" class="btn btn-dark text-right" type="submit">Place bid</button>
             </div>
           </div>
         </form>
