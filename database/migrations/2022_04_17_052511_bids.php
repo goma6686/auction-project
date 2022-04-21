@@ -18,8 +18,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->unsigned()->constrained('users');
             $table->foreignId('item_id')->unsigned()->constrained('items');
-            $table->float('bid_amount')->nullable();
-            $table->timestamps();
+            $table->float('bid_amount')->unsigned();
+            $table->DateTime('created_at');
         });
     }
 

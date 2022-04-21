@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\User;
 use App\Models\Condition;
+use App\Models\Bid;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
@@ -46,7 +47,7 @@ class PostController extends Controller
         request()->validate([
             'title' => 'required',
             'end_date' => 'required|date|after:today',
-            'price' => 'required',
+            'starting_price' => 'required',
             'cover' => 'mimes:jpg,png,jpeg,svg|image|max:5120',
         ]);
         $item = new Item();
@@ -55,7 +56,8 @@ class PostController extends Controller
         $item -> min_bid = $request->input('min_bid') ?? '1.0';
         $item -> end_date = $request->input('end_date');
         $item -> condition_id = $request->input('condition_id');
-        $item -> price = $request->input('price');
+        $item -> starting_price = $request->input('starting_price');
+        $item -> price = $item -> starting_price;
         if($request-> has('is_active')){
             $item -> is_active = '1';
         } else {
@@ -118,7 +120,7 @@ class PostController extends Controller
 
         request()->validate([
             'title' => 'required',
-            'price' => 'required',
+            'starting_price' => 'required',
             'condition_id' => 'required',
             'end_date' => 'required|date|after:today',
             'cover' => 'mimes:jpg,png,jpeg,svg|image|max:5120',
@@ -129,7 +131,8 @@ class PostController extends Controller
         $item -> min_bid = request('min_bid');
         $item -> end_date = request('end_date');
         $item -> condition_id = request('condition_id');
-        $item -> price = request('price');
+        $item -> starting_price = request('starting_price');
+        $item -> price = $item -> starting_price;
         if(request('is_active') != NULL){
             $item->is_active = '1';
         } else {
@@ -179,10 +182,17 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-    public function updatePrice($id){
+    public function updatePrice(Request $request, $id){
         $item = Item::findOrFail($id);
-        $item -> price = request('price');
+        $item -> price = request('bid_amount');
         $item -> bidder_count++;
+        $item -> save();
+        $bid = new Bid();
+        $bid -> user_id = $request->user()->id;
+        $bid -> item_id = $item -> id;
+        $bid -> bid_amount = $item -> price;
+        $bid -> created_at = \Carbon\Carbon::now()->toDateTimeString();
+        $bid -> save();
         $item -> save();
         return redirect()->back();
     }

@@ -22,6 +22,7 @@ class ItemFactory extends Factory
             'condition_id' => $this->faker->numberBetween(1,5),
             'user_id' => $this->faker->numberBetween(1,6),
             'min_bid' => $this->faker->randomFloat(4, 0, 100),
+            'starting_price' => $this->faker->randomFloat(4, 0, 1000),
             'price' => $this->faker->randomFloat(4, 0, 1000),
             'is_active' => $this->faker->numberBetween(0,1),
             'end_date' => $this->faker->dateTimeBetween('+1 days', '+4 weeks'),

@@ -43,7 +43,6 @@
                  No Auctions are ending soon yet
                 @endif
             </div>
-            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">..c.</div>
         </div>
     </div>
 </div>
