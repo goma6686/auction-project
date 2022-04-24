@@ -29,3 +29,7 @@ Route::post('/profile/update/{id}', [PostController::class, 'update'])->name('up
 Route::delete('/profile/delete/{id}', [PostController::class, 'destroy']);
 Route::delete('/profile/removeImage/{id}', [PostController::class, 'removeImage']);
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
