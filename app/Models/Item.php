@@ -20,4 +20,14 @@ class Item extends Model
         'starting_price',
         'is_active',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function bid()
+    {
+        return $this->hasMany(Bid::class);
+    }
 }
