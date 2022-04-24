@@ -33,7 +33,9 @@
                             $hours = $hours + ($diff->days*24);
                         @endphp
                         @if ($hours < 12)
-                            $counter++;
+                            @php
+                                $counter++;
+                            @endphp
                             <div class="col">
                             @include('layout.card')
                         @endif
