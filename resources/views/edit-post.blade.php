@@ -36,8 +36,8 @@
                 <textarea name="description" type="text" rows="5" class="form-control">{{ $item->description }}</textarea>
             </div>
             <div class="form-group pt-4">
-                <label for="price">Price:</label><br>
-                <input type="number" name="price" placeholder="1.0" step="0.01" min="0.1" value="{{ $item->price }}">
+                <label for="starting_price">Price:</label><br>
+                <input type="number" name="starting_price" placeholder="1.0" step="0.01" min="0.1" value="{{ $item->starting_price }}">
             </div>
             <div class="form-group pt-4">
                 <label for="min_bid">Minimal bid:</label><br>

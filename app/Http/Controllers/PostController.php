@@ -47,7 +47,7 @@ class PostController extends Controller
         request()->validate([
             'title' => 'required',
             'end_date' => 'required|date|after:today',
-            'starting_price' => 'required',
+            'starting_price' => 'required|numeric',
             'cover' => 'mimes:jpg,png,jpeg,svg|image|max:5120',
         ]);
         $item = new Item();
@@ -120,7 +120,7 @@ class PostController extends Controller
 
         request()->validate([
             'title' => 'required',
-            'starting_price' => 'required',
+            'starting_price' => 'required|numeric',
             'condition_id' => 'required',
             'end_date' => 'required|date|after:today',
             'cover' => 'mimes:jpg,png,jpeg,svg|image|max:5120',
@@ -182,18 +182,5 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-    public function updatePrice(Request $request, $id){
-        $item = Item::findOrFail($id);
-        $item -> price = request('bid_amount');
-        $item -> bidder_count++;
-        $item -> save();
-        $bid = new Bid();
-        $bid -> user_id = $request->user()->id;
-        $bid -> item_id = $item -> id;
-        $bid -> bid_amount = $item -> price;
-        $bid -> created_at = \Carbon\Carbon::now()->toDateTimeString();
-        $bid -> save();
-        $item -> save();
-        return redirect()->back();
-    }
+    
 }

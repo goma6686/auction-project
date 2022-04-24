@@ -1,5 +1,4 @@
 const mix = require('laravel-mix');
-const flatpickr = require("flatpickr");
 
 /*
  |--------------------------------------------------------------------------
@@ -13,5 +12,5 @@ const flatpickr = require("flatpickr");
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .sourceMaps();
+    .vue()
+    .sass('resources/sass/app.scss', 'public/css');

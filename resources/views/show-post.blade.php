@@ -54,7 +54,7 @@
           <div class="card-footer form-group" id="two-cols">
             <div class="text-left pt-2" id="left-item">
               <h5>Place a bid, €:</h5>
-                <input type="number" name="bid_amount" placeholder="Bid amount" step="0.01" min="{{$item->min_bid + $item->price}}">
+                <input type="number" name="bid_amount" placeholder="Bid amount" step="0.01" min="{{$item->min_bid + $item->price}}" v-model="bidBox">
                   <p class="text-muted text-right">Enter {{$item->min_bid + $item->price}}€ or more</p>
             </div>
             <div id="right-item">
@@ -69,4 +69,39 @@
   </div>
 </div>
 @include('layout.timer')
+  @section('scripts')
+  <script>
+      const app = new Vue({
+          el: '#app',
+          data: {
+              bids: {},
+              bidBox: '',
+              item: {!! $item !!},
+              user: {!! Auth::check() ? Auth::user() : 'null' !!}
+          },
+          mounted() {
+            this.getBids();
+          },
+          methods: {
+            getBids(){
+              axios.get(`api/posts/${this.item.id}/bids`).then((response) => {
+                this.bids = response.data
+              }).catch(function (error){
+                console.log(error);
+              });
+            },
+            placeBid(){
+              axios.post(`/item/updatePrice/${this.item.id}`, {
+                body: this.bidBox
+              }).then((response) => {
+                this.bids.unshift(response.data);
+                this.bidBox = '';
+              }).catch(function(error){
+                console.log(error);
+              });
+            }
+          }
+      })
+  <script>
+  @endsection
 @endsection
