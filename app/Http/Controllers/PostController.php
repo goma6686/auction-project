@@ -91,7 +91,8 @@ class PostController extends Controller
     {
         $conditions = Condition::all();
         $item = Item::find($id);
-        return view('show-post', ['item' => $item, 'conditions' => $conditions], );
+        $bids = Bid::where('item_id', $item->id)->get();
+        return view('show-post', ['item' => $item, 'conditions' => $conditions, 'bids' => $bids] );
     }
 
     /**

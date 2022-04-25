@@ -11,16 +11,48 @@ use Auth;
 
 class BidController extends Controller
 {
-    public function updatePrice(Request $request, $id){
+
+    public function index(Item $item, $id){
+        
+        $item = Item::find($id);
+        $bids = Bid::where('item_id', $item->id)->get();
+        //return response()->json($item->bids()->with('user')->get());
+        return response()->json($bids);
+    }
+
+
+    public function updatePrice(Request $request, Item $item, $id){
+        $item = Item::findOrFail($id);
         $this->validate($request, [
             'bid_amount' => 'required|numeric'
         ]);
+        $bid = $item->bids()->create([
+            'user_id' => Auth::id(),
+            'item_id' => $item->id,
+            'bid_amount' => $request->bid_amount,
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
+        ]);
+
+        $bid = Bid::where('id', $bid->id)->with('user')->first();
+
+        $maxBid = $item->bid()->max('bid_amount');
+
+        if(!$maxBid){
+            $maxBid = $item->starting_price;
+        }
+
+        $item->price = $bid_amount;
+        $item -> bidder_count++;
+        $item -> save();
+
+        return $bid->toJson();
+        /*
         $item = Item::findOrFail($id);
         $bid_amount = $request->bid_amount;
         $item_id = $item -> id;
         $user_id = Auth::id();
 
-        $maxBid = $item->bid()->max('bid_amount');
+        $maxBid = $item->bids()->max('bid_amount');
 
         if(!$maxBid){
             $maxBid = $item->starting_price;
@@ -40,19 +72,6 @@ class BidController extends Controller
             $item -> bidder_count++;
             $item -> save();
             return redirect()->back();
-        }
-        /*
-        $item = Item::findOrFail($id);
-        $item -> price = request('bid_amount');
-        $item -> bidder_count++;
-        $item -> save();
-        $bid = new Bid();
-        $bid -> user_id = $request->user()->id;
-        $bid -> item_id = $item -> id;
-        $bid -> bid_amount = $item -> price;
-        $bid -> created_at = \Carbon\Carbon::now()->toDateTimeString();
-        $bid -> save();
-        return redirect()->back();
-        //return $item->toJson();*/
+        }*/
     }
 }

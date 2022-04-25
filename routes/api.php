@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('items/{item}/bids', 'BidController@index');
+
+Route::middleware('auth:api')->group(function() {
+    Route::get('items/{item}/bid', 'BidController@updatePrice');
+});
