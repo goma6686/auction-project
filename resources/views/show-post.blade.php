@@ -1,4 +1,14 @@
 @extends('layout.app')
+@section('js')
+<script>
+  Echo.channel('item-events')
+.listen('NewBid', function (event) {
+console.log(event);
+var action = event.action;
+updateItemStats[action](event.itemId);
+});
+</script>
+@endsection
 @section('content')
 <div id="bidding">
 <div class="container-xxl">
@@ -50,8 +60,8 @@
             </h5>
           </div>
         </div>
-        <!--<form enctype="multipart/form-data" method="POST" action="">
-          @csrf-->
+        <form enctype="multipart/form-data" method="POST" action="{{route('update-price', array($item->id))}}">
+          @csrf
           <div class="card-footer form-group" id="two-cols">
             <div class="text-left pt-2" id="left-item">
               <h5>Place a bid, €:</h5>
@@ -60,16 +70,17 @@
             </div>
             <div id="right-item">
               <h5>Current bid, €:<br> {{$item->price}}</h5>
-              <button class="btn btn-dark text-right" @click.prevent="postBid">Place bid</button>
+              <button onclick="actOnBid(event);" data-item-id="{{ $item->id }}" class="btn btn-dark text-right" >Bid</button>
+              <span id="bids-count-{{ $item->id }}">{{ $item->bidder_count }}</span>
             </div>
           </div>
-        <!--</form>-->
+        </form>
         </div>
       </div>
-      <div class="mt-4 card p-3 border-dark" v-for="bid in bids">
+      <div class="mt-4 card p-3 border-dark">
         <div class="card-body">
-          <h5 class="card-heading">@{{bid.user.name}} placed a bid of</h5>
-          <p>@{{bid.bid_amount}}</p>
+          <h5 class="card-heading"> placed a bid of</h5>
+          <p></p>
         </div>
       </div> 
     </div>
@@ -77,40 +88,23 @@
 </div>
 </div>
 @include('layout.timer')
-@section('scripts')
-<script>
-  const app = new Vue({
-    el: '#bidding',
-    data: {
-      bids: {},
-      bidBox: '',
-      item: {!! $item->toJson() !!},
-      user: {!! Auth::user()->toJson() !!}
-    },
-    mounted(){
-      this.getBids();
-    },
-    methods: {
-      getBids(){
-        axios.get(`/api/items/${this.item.id}/bids`).then((response) => {
-          this.bids = response.data
-        }).catch(function(error) {
-          console.log(error);
-        });
-      },
-      postBid(){
-        axios.post(`/api/items/${this.item.id}/bid`, {
-          api_token: this.user.api_token,
-          bid_amount: this.bidBox
-        }).then((response) => {
-          this.bids.unshift(response.data);
-          this.bidBox = '';
-        }).catch(function(error) {
-          console.log(error);
-        });
-      }
-    }
-  });
-</script>
-@endsection
+    <script>
+
+        var updateItemStats = {
+          Bid: function (itemId) {
+                document.querySelector('#bids-count-' + itemId).textContent++;
+            }
+        };
+    
+        var actOnBid = function (event) {
+            var itemId = event.target.dataset.itemId;
+            var action = event.target.textContent;
+            updateItemStats[action](itemId);
+            axios.post('/bids/' + itemId + '/act',
+                { action: action });
+        };
+
+        
+    
+    </script>
 @endsection

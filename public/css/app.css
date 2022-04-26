@@ -104,22 +104,6 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   line-height: 1.2;
 }
 
-#two-cols{
-  width: 100%;
-  display: flex;
-  padding-top: 2%;
-}
-
-#right-item{
-  width: 40%;
-  text-align: center;
-}
-
-#left-item{
-  width: 60%;
-  text-align: left;
-}
-
 h1, .h1 {
   font-size: calc(1.35rem + 1.2vw);
 }

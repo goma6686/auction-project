@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Bid;
 use Carbon\Carbon;
 use Auth;
+use App\Events\NewBid;
 
 class BidController extends Controller
 {
@@ -20,9 +21,21 @@ class BidController extends Controller
         return response()->json($bids);
     }
 
+    public function actOnBid(Request $request, $id)
+    {
+        $action = $request->get('action');
+        switch ($action) {
+            case 'Place bid':
+                Item::where('id', $id)->increment('bidder_count');
+                break;
+        }
+        event(new NewBid($id, $action));
+        return '';
+    }
 
-    public function updatePrice(Request $request, Item $item, $id){
-        $item = Item::findOrFail($id);
+
+    public function updatePrice(Request $request, $id){
+        /*$item = Item::findOrFail($id);
         $this->validate($request, [
             'bid_amount' => 'required|numeric'
         ]);
@@ -46,7 +59,7 @@ class BidController extends Controller
         $item -> save();
 
         return $bid->toJson();
-        /*
+        */
         $item = Item::findOrFail($id);
         $bid_amount = $request->bid_amount;
         $item_id = $item -> id;
@@ -71,7 +84,10 @@ class BidController extends Controller
             $item->price = $bid_amount;
             $item -> bidder_count++;
             $item -> save();
+
+            //event(new NewBid($bid));
+
             return redirect()->back();
-        }*/
+        }
     }
 }
