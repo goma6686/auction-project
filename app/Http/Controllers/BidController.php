@@ -35,31 +35,6 @@ class BidController extends Controller
 
 
     public function updatePrice(Request $request, $id){
-        /*$item = Item::findOrFail($id);
-        $this->validate($request, [
-            'bid_amount' => 'required|numeric'
-        ]);
-        $bid = $item->bids()->create([
-            'user_id' => Auth::id(),
-            'item_id' => $item->id,
-            'bid_amount' => $request->bid_amount,
-            'created_at' => \Carbon\Carbon::now()->toDateTimeString()
-        ]);
-
-        $bid = Bid::where('id', $bid->id)->with('user')->first();
-
-        $maxBid = $item->bid()->max('bid_amount');
-
-        if(!$maxBid){
-            $maxBid = $item->starting_price;
-        }
-
-        $item->price = $bid_amount;
-        $item -> bidder_count++;
-        $item -> save();
-
-        return $bid->toJson();
-        */
         $item = Item::findOrFail($id);
         $bid_amount = $request->bid_amount;
         $item_id = $item -> id;
@@ -88,6 +63,7 @@ class BidController extends Controller
             //event(new NewBid($bid));
 
             return redirect()->back();
+            //return '';
         }
     }
 }

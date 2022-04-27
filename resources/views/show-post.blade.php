@@ -1,7 +1,7 @@
 @extends('layout.app')
 @section('js')
 <script>
-  Echo.channel('item-events')
+  Echo.channel('item.{{$item->id}}')
 .listen('NewBid', function (event) {
 console.log(event);
 var action = event.action;

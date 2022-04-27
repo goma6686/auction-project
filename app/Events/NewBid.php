@@ -25,9 +25,10 @@ class NewBid implements ShouldBroadcastNow
      *
      * @return void
      */
-    public function __construct($itemId, $action)
+    public function __construct(Bid $bid, Item $item, $itemId, $action)
     {
-        //$this->bid = $bid;
+        $this->bid = $bid;
+        $this->item = $item;
         $this->itemId = $itemId;
         $this->action = $action;
     }
@@ -39,8 +40,8 @@ class NewBid implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        //return new Channel('item.'.$this->bid->item->id);
-        return new Channel('item-events');
+        return new Channel('item.'.$this->item->id);
+        //return new Channel('item-events');
     }
 
     public function broadcastWith(){

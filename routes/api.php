@@ -20,6 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('items/{item}/bids', 'BidController@index');
 
-Route::middleware('auth:api')->group(function() {
-    Route::get('items/{item}/bid', 'BidController@updatePrice');
-});
+Route::post('items/{item}/bid', 'BidController@updatePrice');

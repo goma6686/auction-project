@@ -29,7 +29,7 @@ Route::post('/profile/update/{id}', [PostController::class, 'update'])->name('up
 Route::delete('/profile/delete/{id}', [PostController::class, 'destroy']);
 Route::delete('/profile/removeImage/{id}', [PostController::class, 'removeImage']);
 
-Route::post('/bids/{id}/act', 'BidController@actOnBid');
+Route::post('/bids/{id}/act', 'BidController@updatePrice');
 
 
 Auth::routes();
