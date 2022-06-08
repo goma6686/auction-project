@@ -6,31 +6,25 @@ use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Item;
-use App\Models\Bid;
 
-class NewBid implements ShouldBroadcastNow
+class BidPlaced implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $bid;
-    public $itemId;
-    public $action;
+    public $item;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Bid $bid, Item $item, $itemId, $action)
+
+    public function __construct($item)
     {
-        $this->bid = $bid;
         $this->item = $item;
-        $this->itemId = $itemId;
-        $this->action = $action;
     }
 
     /**
@@ -40,11 +34,15 @@ class NewBid implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('item.'.$this->item->id);
-        //return new Channel('item-events');
+        return new Channel('Bids');
     }
 
-    public function broadcastWith(){
-        return ['bid_amount' => $this->bid->bid_amount];
+    public function broadcastWith()
+    {
+        return [
+            'id' => $this->item->id,
+            'bidder_count' => $this->item->bidder_count,
+            'price' => $this->item->price
+        ];
     }
 }

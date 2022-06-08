@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+<nav class="navbar navbar-expand-md navbar-dark shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ route('dashboard') }}">
             {{ config('app.name', 'Auction') }}
@@ -8,14 +8,14 @@
                 <!-- Authentication Links -->
                 @guest
                 @if (Route::has('login'))
-                    <a class="btn btn-outline-dark me-2" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="btn btn-outline-light me-2" href="{{ route('login') }}">{{ __('Login') }}</a>
                 @endif
 
                 @if (Route::has('register'))
-                    <a class="btn btn-outline-dark me-2" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <a class="btn btn-outline-light me-2" href="{{ route('register') }}">{{ __('Register') }}</a>
                 @endif
             @else
-                    <a id="navbarDropdown" class="btn btn-outline-dark me-2 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown" class="btn btn-outline-light me-2 dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}
                     </a>
 

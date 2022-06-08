@@ -16,8 +16,6 @@ use App\Http\Controllers\BidController;
 |
 */
 
-Auth::routes();
-
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 Route::get('/item/{id}', [PostController::class, 'show'])->name('show-post');
 Route::post('/item/updatePrice/{id}', [BidController::class, 'updatePrice'])->name('update-price');
@@ -28,8 +26,6 @@ Route::get('/profile/edit/{id}', [PostController::class, 'edit'])->name('edit-po
 Route::post('/profile/update/{id}', [PostController::class, 'update'])->name('update-post');
 Route::delete('/profile/delete/{id}', [PostController::class, 'destroy']);
 Route::delete('/profile/removeImage/{id}', [PostController::class, 'removeImage']);
-
-Route::post('/bids/{id}/act', 'BidController@updatePrice');
 
 
 Auth::routes();

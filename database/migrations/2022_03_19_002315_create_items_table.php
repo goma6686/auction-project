@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::enableForeignKeyConstraints();
         Schema::create('items', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             $table->string('title');
             $table->text('description')->nullable();
             $table->foreignId('condition_id')->unsigned()->constrained('conditions');
