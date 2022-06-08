@@ -21,7 +21,8 @@ class PostController extends Controller
         $data = User::all();
         $items = Item::all();
         $conditions = Condition::all();
-        return view('profile', ['users' => $data, 'items' => $items, 'conditions' => $conditions]);
+        $bids = Bid::all();
+        return view('profile', ['users' => $data, 'items' => $items, 'conditions' => $conditions, 'bids' => $bids]);
     }
 
     /**
@@ -91,7 +92,8 @@ class PostController extends Controller
     {
         $conditions = Condition::all();
         $item = Item::find($id);
-        return view('show-post', ['item' => $item, 'conditions' => $conditions], );
+        $bids = Bid::where('item_id', $item->id)->get();
+        return view('show-post', ['item' => $item, 'conditions' => $conditions, 'bids' => $bids] );
     }
 
     /**
@@ -166,12 +168,17 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $items = Item::findOrFail($id);
-        if($items -> cover != null){
-            unlink(public_path('/images/'.$items->cover));
+        $item = Item::findOrFail($id);
+        if($item -> cover != null){
+            //unlink(public_path('/images/'.$item->cover));
         }
-        $items->delete();
+        $bids = Bid::where('item_id', $item->id)->get();
+        if($bids){
+            $bids->each()->delete();
+        }
+        $item->delete();
         return redirect('/profile');
+        //return response()->json($bids);
     }
 
     public function removeImage($id){
