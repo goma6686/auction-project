@@ -15,9 +15,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://js.pusher.com/7.0.3/pusher.min.js"></script>
-
-    <script type="module" src="{{ asset('js/echo.js') }}"></script>
-    <script type="module" src="{{ asset('js/pusher.js') }}"></script>
     @yield('js')
 
     <!-- Fonts -->
