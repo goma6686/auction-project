@@ -22,6 +22,9 @@ Route::get('/item/{id}', [HomeController::class, 'show'])->name('show');
 Route::post('/item/updatePrice/{id}', [BidController::class, 'updatePrice'])->name('update-price');
 
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+
+Route::get('/profile/admin', [HomeController::class, 'admin']);
+
 Route::post('/profile', [PostController::Class, 'store']);
 Route::get('/profile/create', [PostController::class, 'create'])->name('create-post');
 Route::get('/profile/edit/{id}', [PostController::class, 'edit'])->name('edit-post');

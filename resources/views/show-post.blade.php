@@ -46,7 +46,7 @@
               <div class="text-left pt-2" id="left-item">
                 <h5>Place a bid, €:</h5>
                   <input type="number" name="bid_amount" placeholder="Bid amount" step="0.01" min="{{$item->min_bid + $item->price}}">
-                    <p class="text-muted text-right">Enter +{{$item->min_bid + $item->price}}€ or more</p>
+                    {{--<p class="text-muted text-right">Enter +{{$item->min_bid + $item->price}}€ or more</p>--}}
               </div>
               <div id="right-item">
                 <h5>Current Price, €:<br><p id="price"> {{$item->price}}</p></h5>

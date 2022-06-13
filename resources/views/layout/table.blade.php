@@ -19,7 +19,6 @@
             $counter = 0;
         @endphp
         @foreach ($items as $item)
-            @if (Auth::id() == $item->user_id)
             @php
             $counter++;
             @endphp
@@ -82,7 +81,6 @@
                     </form>
                 </td>
             </tr>
-            @endif
         @endforeach
     </tbody>
 </table>
