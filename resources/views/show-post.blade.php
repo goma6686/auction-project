@@ -21,23 +21,22 @@
                 <p id="p1">{{ $item->bidder_count }}</p></b>
               </h5>
               <h5>
-                @php    
-                  $date = new DateTime($item->end_date);
-                  $now = new DateTime(\Carbon\Carbon::now());
-                  $diff = $now->diff($date);
-                  $hours = $diff->h;
-                  $hours = $hours + ($diff->days*24);
-                @endphp
-                @if ($date < $now)
-                <b>Auction Has Ended</b>
-                @elseif ($hours < 1)
-                  <div>
-                    <div class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date)->format('Y/m/d H:i:s') }}"></div>
-                  </div>
-                @else
-                <b>Time left:</b>
-                  {{ $date->diff($now)->format("%dD %hH %iM");}}
-                @endif
+              @php    
+            $date = new DateTime($item->end_date);
+            $now = new DateTime(\Carbon\Carbon::now());
+            $diff = $now->diff($date);
+            $hours = $diff->h;
+            $hours = $hours + ($diff->days*24);
+        @endphp
+        @if ($date <= $now)
+          <b>Auction Has Ended</b>
+        @elseif ($hours < 1)
+        <div>
+            <div class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date)->format('Y/m/d H:i:s') }}"></div>
+         </div>
+        @else
+            {{ $date->diff($now)->format("Ends in %dD %hH %iM"); }}
+        @endif
               </h5>
             </div>
           </div>
