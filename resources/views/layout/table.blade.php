@@ -3,6 +3,8 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
+            <th scope="col">Price, €</th>
+            <th scope="col">Bidders</th>
             <th scope="col">Cover</th>
             <th scope="col">minBid</th>
             <th scope="col">Condition</th>
@@ -19,12 +21,18 @@
         @foreach ($items as $item)
             @if (Auth::id() == $item->user_id)
             @php
-                $counter++;
+            $counter++;
             @endphp
             <tr scope="row">
                 <th>{{$counter}}</th>
                 <td>
                     {{$item->title}}
+                </td>
+                <td>
+                    {{$item->price}}
+                </td>
+                <td>
+                    {{$item->bidder_count}}
                 </td>
                 <td>
                     @if ($item->cover != NULL) 
@@ -78,3 +86,8 @@
         @endforeach
     </tbody>
 </table>
+@if($counter == 0)
+<h3 style="text-align: center;">No items found :( <br>
+    <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>
+ </h3>
+@endif

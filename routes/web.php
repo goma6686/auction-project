@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-
+use App\Http\Controllers\BidController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,11 +16,12 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Auth::routes();
-
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
-Route::get('/item/{id}', [PostController::class, 'show'])->name('show-post');
-Route::get('/profile', [PostController::class, 'index'])->name('profile');
+
+Route::get('/item/{id}', [HomeController::class, 'show'])->name('show');
+Route::post('/item/updatePrice/{id}', [BidController::class, 'updatePrice'])->name('update-price');
+
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 Route::post('/profile', [PostController::Class, 'store']);
 Route::get('/profile/create', [PostController::class, 'create'])->name('create-post');
 Route::get('/profile/edit/{id}', [PostController::class, 'edit'])->name('edit-post');
@@ -28,3 +29,4 @@ Route::post('/profile/update/{id}', [PostController::class, 'update'])->name('up
 Route::delete('/profile/delete/{id}', [PostController::class, 'destroy']);
 Route::delete('/profile/removeImage/{id}', [PostController::class, 'removeImage']);
 
+Auth::routes();

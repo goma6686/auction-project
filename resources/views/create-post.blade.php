@@ -21,6 +21,10 @@
                 <textarea name="description" type="text" rows="5" class="form-control"></textarea>
             </div>
             <div class="form-group pt-4">
+                <label for="starting_price">Start Price:</label><br>
+                <input type="number" name="starting_price" placeholder="1.0" step="0.01" min="0.1">
+            </div>
+            <div class="form-group pt-4">
                 <label for="min_bid">Minimal bid:</label><br>
                 <input type="number" name="min_bid" placeholder="1.0" step="0.01" min="0.1" >
             </div>

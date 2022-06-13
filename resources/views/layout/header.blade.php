@@ -1,12 +1,12 @@
+<nav class="navbar navbar-expand-md navbar-dark shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="{{ route('dashboard') }}">
+            {{ config('app.name', 'Auction') }}
+        </a>
 
-<nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-            <li class="nav-item active">
-                <a class="nav-link px-2 text-secondary" href="{{ route('dashboard') }}">Auction</a>
-            </li>
-        </ul>
-        <div class="text-end">
-            @guest
+        <div class="text-end" id="navbarSupportedContent">
+                <!-- Authentication Links -->
+                @guest
                 @if (Route::has('login'))
                     <a class="btn btn-outline-light me-2" href="{{ route('login') }}">{{ __('Login') }}</a>
                 @endif
@@ -33,4 +33,5 @@
                     </div>
                 @endguest
         </div>
+    </div>
 </nav>

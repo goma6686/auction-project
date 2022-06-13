@@ -18,10 +18,12 @@ class ItemFactory extends Factory
     {
         return [
             'title' => $this->faker->words(3, true), //true - string returned instead of array
-            'description' => $this->faker->text(50),
+            'description' => $this->faker->paragraph(),
             'condition_id' => $this->faker->numberBetween(1,5),
             'user_id' => $this->faker->numberBetween(1,6),
             'min_bid' => $this->faker->randomFloat(4, 0, 100),
+            'starting_price' => $this->faker->randomFloat(4, 0, 1000),
+            'price' => $this->faker->randomFloat(4, 0, 1000),
             'is_active' => $this->faker->numberBetween(0,1),
             'end_date' => $this->faker->dateTimeBetween('+1 days', '+4 weeks'),
         ];

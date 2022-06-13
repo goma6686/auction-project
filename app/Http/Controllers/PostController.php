@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\User;
 use App\Models\Condition;
+use App\Models\Bid;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
@@ -16,11 +17,6 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        $data = User::all();
-        $conditions = Condition::all();
-        return view('profile', ['users' => $data, 'items' => DB::table('items')->orderBy('id', 'desc')->paginate(6), 'conditions' => $conditions]);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -45,7 +41,8 @@ class PostController extends Controller
         request()->validate([
             'title' => 'required',
             'end_date' => 'required|date|after:today',
-            'cover' => 'mimes:jpg,png,jpeg,svg|image',
+            'starting_price' => 'required|numeric',
+            'cover' => 'mimes:jpg,png,jpeg,svg|image|max:5120',
         ]);
         $item = new Item();
         $item -> title = $request->input('title');
@@ -53,6 +50,8 @@ class PostController extends Controller
         $item -> min_bid = $request->input('min_bid') ?? '1.0';
         $item -> end_date = $request->input('end_date');
         $item -> condition_id = $request->input('condition_id');
+        $item -> starting_price = $request->input('starting_price');
+        $item -> price = $item -> starting_price;
         if($request-> has('is_active')){
             $item -> is_active = '1';
         } else {
@@ -82,12 +81,6 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $conditions = Condition::all();
-        $item = Item::find($id);
-        return view('show-post', ['item' => $item, 'conditions' => $conditions]);
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -115,9 +108,10 @@ class PostController extends Controller
 
         request()->validate([
             'title' => 'required',
+            'starting_price' => 'required|numeric',
             'condition_id' => 'required',
             'end_date' => 'required|date|after:today',
-            'cover' => 'mimes:jpg,png,jpeg,svg|image',
+            'cover' => 'mimes:jpg,png,jpeg,svg|image|max:5120',
         ]);
 
         $item -> title = request('title');
@@ -125,6 +119,8 @@ class PostController extends Controller
         $item -> min_bid = request('min_bid');
         $item -> end_date = request('end_date');
         $item -> condition_id = request('condition_id');
+        $item -> starting_price = request('starting_price');
+        $item -> price = $item -> starting_price;
         if(request('is_active') != NULL){
             $item->is_active = '1';
         } else {
@@ -158,12 +154,17 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $items = Item::findOrFail($id);
-        if($items -> cover != null){
-            unlink(public_path('/images/'.$items->cover));
+        $item = Item::findOrFail($id);
+        if($item -> cover != null){
+            //unlink(public_path('/images/'.$item->cover));
         }
-        $items->delete();
+        $bids = Bid::where('item_id', $item->id)->delete();
+        /*if($bids != null){
+            $bids->each()->delete();
+        }
+        */$item->delete();
         return redirect('/profile');
+        //return response()->json($bids);
     }
 
     public function removeImage($id){
@@ -173,4 +174,6 @@ class PostController extends Controller
         $item -> save();
         return redirect()->back();
     }
+
+    
 }
