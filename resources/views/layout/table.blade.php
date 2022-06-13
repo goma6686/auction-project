@@ -4,6 +4,7 @@
             <th scope="col">#</th>
             <th scope="col">Title</th>
             <th scope="col">Price, €</th>
+            <th scope="col">Bidders</th>
             <th scope="col">Cover</th>
             <th scope="col">minBid</th>
             <th scope="col">Condition</th>
@@ -29,6 +30,9 @@
                 </td>
                 <td>
                     {{$item->price}}
+                </td>
+                <td>
+                    {{$item->bidder_count}}
                 </td>
                 <td>
                     @if ($item->cover != NULL) 

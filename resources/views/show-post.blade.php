@@ -21,23 +21,22 @@
                 <p id="p1">{{ $item->bidder_count }}</p></b>
               </h5>
               <h5>
-                @php    
-                  $date = new DateTime($item->end_date);
-                  $now = new DateTime(\Carbon\Carbon::now());
-                  $diff = $now->diff($date);
-                  $hours = $diff->h;
-                  $hours = $hours + ($diff->days*24);
-                @endphp
-                @if ($date < $now)
-                <b>Auction Has Ended</b>
-                @elseif ($hours < 1)
-                  <div>
-                    <div class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date)->format('Y/m/d H:i:s') }}"></div>
-                  </div>
-                @else
-                <b>Time left:</b>
-                  {{ $date->diff($now)->format("%dD %hH %iM");}}
-                @endif
+              @php    
+            $date = new DateTime($item->end_date);
+            $now = new DateTime(\Carbon\Carbon::now());
+            $diff = $now->diff($date);
+            $hours = $diff->h;
+            $hours = $hours + ($diff->days*24);
+        @endphp
+        @if ($date <= $now)
+          <b>Auction Has Ended</b>
+        @elseif ($hours < 1)
+        <div>
+            <div class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date)->format('Y/m/d H:i:s') }}"></div>
+         </div>
+        @else
+            {{ $date->diff($now)->format("Ends in %dD %hH %iM"); }}
+        @endif
               </h5>
             </div>
           </div>
@@ -61,25 +60,4 @@
     </div>    
   </div>
 @endsection
-@section('js')
-<script>
-var pusher = new Pusher('7581a7c77fa1b5b97b89', {
-  cluster: 'eu'
-});
-var channel = pusher.subscribe('Bids');
-channel.bind('App\\Events\\BidPlaced', function(data) {
-  const element = document.getElementById("p1");
-  const p_element = document.getElementById("price");
-  
-  var obj = data;
-  obj.toJSON = function(){
-    return {
-      bidder_count: data.bidder_count,
-      price: data.price
-    }
-  }
-  element.innerHTML = JSON.stringify(obj.bidder_count);
-  p_element.innerHTML = JSON.stringify(obj.price);
-});
-</script>
-@endsection
+@extends('layout.bid')

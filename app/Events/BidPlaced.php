@@ -36,7 +36,7 @@ class BidPlaced implements ShouldBroadcast
     {
         return new Channel('Bids');
     }
-
+    
     public function broadcastWith()
     {
         return [

@@ -17,13 +17,6 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        $data = User::all();
-        $items = Item::all();
-        $conditions = Condition::all();
-        $bids = Bid::all();
-        return view('profile', ['users' => $data, 'items' => $items, 'conditions' => $conditions, 'bids' => $bids]);
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -88,13 +81,6 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $conditions = Condition::all();
-        $item = Item::find($id);
-        $bids = Bid::where('item_id', $item->id)->get();
-        return view('show-post', ['item' => $item, 'conditions' => $conditions, 'bids' => $bids] );
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -172,11 +158,11 @@ class PostController extends Controller
         if($item -> cover != null){
             //unlink(public_path('/images/'.$item->cover));
         }
-        $bids = Bid::where('item_id', $item->id)->get();
-        if($bids){
+        $bids = Bid::where('item_id', $item->id)->delete();
+        /*if($bids != null){
             $bids->each()->delete();
         }
-        $item->delete();
+        */$item->delete();
         return redirect('/profile');
         //return response()->json($bids);
     }
