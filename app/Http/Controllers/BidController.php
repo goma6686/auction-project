@@ -42,6 +42,13 @@ class BidController extends Controller
         $bid -> save();
 
         event(new BidPlaced($item));
+        $pusher = new \Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            array('cluster' => env('PUSHER_APP_CLUSTER'))
+        );
+        $pusher->trigger('Bids', 'BidPlaced', $item);
         return redirect()->back();
     }
 }

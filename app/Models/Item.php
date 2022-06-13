@@ -16,8 +16,10 @@ class Item extends Model
         'description',
         'min_bid',
         'end_date',
+        'price',
         'condition_id',
         'starting_price',
+        'bidder_count',
         'is_active',
     ];
 

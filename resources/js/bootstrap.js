@@ -1,4 +1,5 @@
 window._ = require('lodash');
+window.Pusher = require('pusher-js');
 
 try {
     require('bootstrap');
