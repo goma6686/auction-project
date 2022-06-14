@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Bid::class);
     }
+
+    public function countItems()
+    {
+        return $this->hasMany(Item::class);
+    }
 }

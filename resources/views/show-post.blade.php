@@ -35,7 +35,7 @@
                   <div class="dots"></div>
                   <div id="price">{{$item->price}}</div>
               </h5>
-              <h5 class="text-center">
+              <h6 class="text-center">
               @php    
                 $date = new DateTime($item->end_date);
                 $now = new DateTime(\Carbon\Carbon::now());
@@ -45,15 +45,15 @@
               @endphp
               @if ($date <= $now)
                 <b>Auction Has Ended</b>
-              @elseif ($hours < 1)
+              @elseif ($hours < 12)
               <div>
-                  <div class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date)->format('Y/m/d H:i:s') }}"></div>
+                  <div id="timer" class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date) }}"></div>
               </div>
               @else
                   {{ $date->diff($now)->format("Ends in %dD %hH %iM"); }}
               @endif
               |   {{ Carbon\Carbon::parse($item->end_date)->format('l H:i') }}
-              </h5>
+              </h6>
           </div>
           <form enctype="multipart/form-data" method="POST" action="{{route('update-price', array($item->id))}}">
             @csrf
@@ -65,7 +65,12 @@
               </div>
               <div class="half">
                 <h6>Seller:</h6>
-                  <a href="#" class="link-dark">{{$seller->name}} </a>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                      <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </span> 
+                <a href="#" class="link-dark">{{$seller->name}} ( {{$count}} )</a>
               </div>
             </div>
           </form>
@@ -74,5 +79,6 @@
       </div>
     </div>    
   </div>
+@include('layout.timer')
 @endsection
 @extends('layout.bid')
