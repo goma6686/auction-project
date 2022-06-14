@@ -7,6 +7,7 @@ use App\Models\Item;
 use App\Models\User;
 use App\Models\Bid;
 use App\Models\Condition;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -33,20 +34,29 @@ class HomeController extends Controller
         return view('dashboard', ['items' => $items, 'conditions' => $conditions]);
     }
 
-    public function profile(){
-        $data = User::all();
-        $items = Item::all();
+    public function profile(Request $request){
         $conditions = Condition::all();
         $bids = Bid::all();
+        $items = Item::where('user_id', Auth::id())->get();
+        $data = Auth::user();
         return view('profile', ['users' => $data, 'items' => $items, 'conditions' => $conditions, 'bids' => $bids]);
     }
 
-    public function show($id)
+    public function admin(Request $request){
+        $conditions = Condition::all();
+        $bids = Bid::all();
+        $data = User::all();
+        $items = Item::all();
+        return view('admin', ['users' => $data, 'items' => $items, 'conditions' => $conditions, 'bids' => $bids]);
+    }
+
+    public function show(Request $request, $id)
     {
         $conditions = Condition::all();
         $item = Item::find($id);
         $bids = Bid::where('item_id', $item->id)->get();
-        return view('show-post', ['item' => $item, 'conditions' => $conditions, 'bids' => $bids] );
+        $seller = User::select('name')->where('id', $item->user_id)->first();
+        return view('show-post', ['item' => $item, 'conditions' => $conditions, 'bids' => $bids, 'seller' => $seller] );
     }
 
 }

@@ -159,12 +159,8 @@ class PostController extends Controller
             //unlink(public_path('/images/'.$item->cover));
         }
         $bids = Bid::where('item_id', $item->id)->delete();
-        /*if($bids != null){
-            $bids->each()->delete();
-        }
-        */$item->delete();
+        $item->delete();
         return redirect('/profile');
-        //return response()->json($bids);
     }
 
     public function removeImage($id){

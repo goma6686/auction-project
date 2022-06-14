@@ -32,4 +32,9 @@ class Item extends Model
     {
         return $this->hasMany(Bid::class);
     }
+
+    public function condition()
+    {
+        return $this->hasOne(Condition::class);
+    }
 }

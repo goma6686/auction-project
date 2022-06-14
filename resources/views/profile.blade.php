@@ -22,6 +22,7 @@
                           <h4 class="m-t-10 m-b-5">{{ Auth::user()->name }}</h4>
                           <p class="m-b-10">{{ Auth::user()->email }}</p>
                           <a href="{{ route('create-post') }}" role="button" class="btn btn-dark">Add Item</a>
+                          @if (Auth::user()->is_admin) <a href="{{ route('admin') }}" role="button" class="btn btn-dark">Admin Board</a> @endif
                        </div>
                        <!-- END profile-header-info -->
                     </div>

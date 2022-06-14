@@ -4278,12 +4278,29 @@ textarea.form-control-lg {
   color: #fff;
 }
 
+.elem {
+  /* Center the content */
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.dots {
+  /* Bottom border */
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+
+  /* Take remaining width */
+  flex: 1;
+
+  /* Spacing */
+  margin: auto;
+}
+
 .card {
   position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -4318,12 +4335,8 @@ textarea.form-control-lg {
 }
 
 .card-title {
+  border-bottom: solid 1px #e1e1e1;
   margin-bottom: 0.5rem;
-}
-
-.card-subtitle {
-  margin-top: -0.25rem;
-  margin-bottom: 0;
 }
 
 .card-text:last-child {
@@ -4345,9 +4358,13 @@ textarea.form-control-lg {
 }
 
 .card-footer {
+  display: flex;
   padding: 0.5rem 1rem;
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+.half {
+  flex: 1;
 }
 .card-footer:last-child {
   border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
