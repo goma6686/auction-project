@@ -23,7 +23,7 @@ Route::post('/item/updatePrice/{id}', [BidController::class, 'updatePrice'])->na
 
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 
-Route::get('/profile/admin', [HomeController::class, 'admin']);
+Route::get('/profile/admin', [HomeController::class, 'admin'])->name('admin');
 
 Route::post('/profile', [PostController::Class, 'store']);
 Route::get('/profile/create', [PostController::class, 'create'])->name('create-post');

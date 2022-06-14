@@ -50,12 +50,13 @@ class HomeController extends Controller
         return view('admin', ['users' => $data, 'items' => $items, 'conditions' => $conditions, 'bids' => $bids]);
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $conditions = Condition::all();
         $item = Item::find($id);
         $bids = Bid::where('item_id', $item->id)->get();
-        return view('show-post', ['item' => $item, 'conditions' => $conditions, 'bids' => $bids] );
+        $seller = User::select('name')->where('id', $item->user_id)->first();
+        return view('show-post', ['item' => $item, 'conditions' => $conditions, 'bids' => $bids, 'seller' => $seller] );
     }
 
 }
