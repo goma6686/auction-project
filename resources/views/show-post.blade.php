@@ -36,23 +36,23 @@
                   <div id="price">{{$item->price}}</div>
               </h5>
               <h6 class="text-center">
-              @php    
-                $date = new DateTime($item->end_date);
-                $now = new DateTime(\Carbon\Carbon::now());
-                $diff = $now->diff($date);
-                $hours = $diff->h;
-                $hours = $hours + ($diff->days*24);
-              @endphp
-              @if ($date <= $now)
-                <b>Auction Has Ended</b>
-              @elseif ($hours < 12)
-              <div>
-                  <div id="timer" class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date) }}"></div>
-              </div>
-              @else
-                  {{ $date->diff($now)->format("Ends in %dD %hH %iM"); }}
-              @endif
-              |   {{ Carbon\Carbon::parse($item->end_date)->format('l H:i') }}
+                @php    
+                  $date = new DateTime($item->end_date);
+                  $now = new DateTime(\Carbon\Carbon::now());
+                  $diff = $now->diff($date);
+                  $hours = $diff->h;
+                  $hours = $hours + ($diff->days*24);
+                @endphp
+                @if ($date <= $now)
+                  <b id="status">Auction Has Ended</b>
+                @elseif ($hours < 12)
+                <div>
+                    <div id="timer" class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date) }}"></div>
+                </div>
+                @else
+                    {{ $date->diff($now)->format("Ends in %dD %hH %iM"); }}
+                @endif
+                |   {{ Carbon\Carbon::parse($item->end_date)->format('l H:i') }}
               </h6>
           </div>
           <form enctype="multipart/form-data" method="POST" action="{{route('update-price', array($item->id))}}">
@@ -60,8 +60,8 @@
             <div class="card-footer form-group">
               <div class="pt-2 half">
                 <h5>Place a bid, €:</h5>
-                  <input type="number" name="bid_amount" placeholder="Bid amount" step="0.01" min="{{$item->min_bid + $item->price}}">
-                  <button class="btn-sm btn-dark text-right" type="submit">Place bid</button>
+                  <input id="demo"  type="number" name="bid_amount" placeholder="Bid amount" step="0.01" min="{{$item->min_bid + $item->price}}">
+                  <button id="demo" " class="button btn-sm btn-dark text-right" type="submit">Place bid</button>
               </div>
               <div class="half">
                 <h6>Seller:</h6>
@@ -79,6 +79,12 @@
       </div>
     </div>    
   </div>
+  <script>
+    const status = document.getElementById('status');
+    if (status.textContent.includes('Auction Has Ended')) {
+      document.getElementById('demo').disabled = true;
+    }
+  </script>
 @include('layout.timer')
 @endsection
 @extends('layout.bid')

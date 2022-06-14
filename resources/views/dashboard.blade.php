@@ -51,6 +51,5 @@
         </div>
     </div>
 </div>
-@include('layout.timer')
 @include('layout.search')
 @endsection
