@@ -26,7 +26,7 @@
             @if ($item->cover != null)
                 <br><img class="img-fluid mt-2"  src="/images/{{ ($item->cover) }}" width="230">
             @endif
-        </div>
+            </div>
             <div class="form-group pt-4">
                 <label>Title</label>
                 <input type="text" name="title" class="form-control" value="{{ $item->title }}" required>

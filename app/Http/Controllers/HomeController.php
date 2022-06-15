@@ -34,29 +34,14 @@ class HomeController extends Controller
         return view('dashboard', ['items' => $items, 'conditions' => $conditions]);
     }
 
-    public function profile(Request $request){
-        $conditions = Condition::all();
-        $bids = Bid::all();
-        $items = Item::where('user_id', Auth::id())->get();
-        $data = Auth::user();
-        return view('profile', ['users' => $data, 'items' => $items, 'conditions' => $conditions, 'bids' => $bids]);
-    }
-
-    public function admin(Request $request){
-        $conditions = Condition::all();
-        $bids = Bid::all();
-        $data = User::all();
-        $items = Item::all();
-        return view('admin', ['users' => $data, 'items' => $items, 'conditions' => $conditions, 'bids' => $bids]);
-    }
-
     public function show(Request $request, $id)
     {
         $conditions = Condition::all();
         $item = Item::find($id);
         $bids = Bid::where('item_id', $item->id)->get();
-        $seller = User::select('name')->where('id', $item->user_id)->first();
-        return view('show-post', ['item' => $item, 'conditions' => $conditions, 'bids' => $bids, 'seller' => $seller] );
+        $seller = User::select('id','name')->where('id', $item->user_id)->first();
+        $count = $seller->countItems()->count();
+        return view('show-post', ['item' => $item, 'conditions' => $conditions, 'bids' => $bids, 'seller' => $seller, 'count' => $count] );
     }
 
 }

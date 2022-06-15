@@ -143,7 +143,7 @@ class PostController extends Controller
         }
         $item->save();
 
-        return redirect('/profile');
+        return redirect()->back();
     }
 
     /**
@@ -156,11 +156,11 @@ class PostController extends Controller
     {
         $item = Item::findOrFail($id);
         if($item -> cover != null){
-            //unlink(public_path('/images/'.$item->cover));
+            unlink(public_path('/images/'.$item->cover));
         }
         $bids = Bid::where('item_id', $item->id)->delete();
         $item->delete();
-        return redirect('/profile');
+        return redirect()->back();
     }
 
     public function removeImage($id){

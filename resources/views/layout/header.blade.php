@@ -3,6 +3,12 @@
         <a class="navbar-brand" href="{{ route('dashboard') }}">
             {{ config('app.name', 'Auction') }}
         </a>
+        
+        @if(auth()->check() && Auth::user()->is_admin)
+            <a href="/user/{{Auth::user()->id}}" role="button" class="btn btn-dark">Profile</a>
+            <a href="{{ route('admin') }}" role="button" class="btn btn-dark">Items</a>
+            <a href="{{ route('users') }}" role="button" class="btn btn-dark">Users</a>
+        @endif
 
         <div class="text-end" id="navbarSupportedContent">
                 <!-- Authentication Links -->
@@ -20,7 +26,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+                        <a class="dropdown-item" href="/user/{{Auth::user()->id}}">Profile</a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -35,3 +41,4 @@
         </div>
     </div>
 </nav>
+

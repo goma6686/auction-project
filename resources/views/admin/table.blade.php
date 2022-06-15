@@ -3,7 +3,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Title</th>
-            <th scope="col">Price, €</th>
+            <th scope="col">Price</th>
             <th scope="col">Bidders</th>
             <th scope="col">Cover</th>
             <th scope="col">minBid</th>
