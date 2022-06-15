@@ -34,6 +34,7 @@ Route::delete('/profile/removeImage/{id}', [PostController::class, 'removeImage'
 
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('edit-user');
 Route::post('/user/update/{id}', [UserController::class, 'update'])->name('update-user');
+Route::delete('/user/removeImage/{id}', [UserController::class, 'removeAvatar']);
 Route::post('/profile', [PostController::Class, 'store']);
 
 Route::get('/user/{id}', [UserController::class, 'show']);
@@ -41,6 +42,7 @@ Route::get('/user/{id}', [UserController::class, 'show']);
 Route::group(['middleware' => 'admin'], function(){
     Route::get('/profile/admin', [AdminController::class, 'dashboard'])->name('admin');
     Route::get('/profile/admin/users', [AdminController::class, 'users'])->name('users');
+    Route::get('/profile/admin/conditions', [AdminController::class, 'conditions'])->name('conditions');
 
     Route::delete('/user/delete/{id}', [UserController::class, 'destroy']);
 

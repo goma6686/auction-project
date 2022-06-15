@@ -84,7 +84,7 @@
         @endforeach
     </tbody>
 </table>
-@if($counter == 0)
+@if($counter == 0 && $user->id == Auth::user()->id)
 <h3 style="text-align: center;">No items found :( <br>
     <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>
  </h3>

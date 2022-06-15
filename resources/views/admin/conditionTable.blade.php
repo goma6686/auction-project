@@ -1,4 +1,4 @@
-<table class="table table-light table-hover">
+<table class="table border-dark table-light table-hover">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -20,9 +20,7 @@
                 <td>
                     {{$condition->name}}
                 </td>
-                <td style="text-align: right;">
-                    <a href="#" class="btn btn-sm btn-dark " role="button">Edit</a>
-                </td>
+                <td></td>
                 <td>
                     <form action="/condition/delete/{{$condition->id}}" method="POST">
                         @csrf

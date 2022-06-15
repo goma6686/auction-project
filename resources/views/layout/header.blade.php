@@ -8,6 +8,7 @@
             <a href="/user/{{Auth::user()->id}}" role="button" class="btn btn-dark">Profile</a>
             <a href="{{ route('admin') }}" role="button" class="btn btn-dark">Items</a>
             <a href="{{ route('users') }}" role="button" class="btn btn-dark">Users</a>
+            <a href="{{ route('conditions') }}" role="button" class="btn btn-dark">Conditions</a>
         @endif
 
         <div class="text-end" id="navbarSupportedContent">

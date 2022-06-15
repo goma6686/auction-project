@@ -14,7 +14,12 @@
                     <div class="profile-header-content">
                        <!-- BEGIN profile-header-img -->
                        <div class="profile-header-img">
-                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReMZX2wlBguwnabKRRtHGtsmUPuOQW50dRPA&usqp=CAU" alt="">
+                              <img  
+                              @if ($user->avatar == null) 
+                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReMZX2wlBguwnabKRRtHGtsmUPuOQW50dRPA&usqp=CAU"
+                              @else
+                                 src="/images/avatars/{{ ($user->avatar) }}"
+                              @endif alt="avatar">
                        </div>
                        <!-- END profile-header-img -->
                        <!-- BEGIN profile-header-info -->
@@ -39,10 +44,25 @@
                  <div class="tab-content">
                     <!-- begin #profile-items tab -->
                     <div class="tab-pane fade active show mt-3" id="profile-items">
-                       
                       <div class="container mt-2">
                         @if (isset($items))
-                           @include('layout.table')
+                           @if(Auth::user()->id == $user->id)
+                              @include('layout.table')
+                           @else
+                           <div class="container px-4 px-lg-5 mt-5">
+                              <div class="row gx-3 gy-3 row-cols-2 row-cols-md-3 row-cols-xl-3">
+                                  @forelse ($items as $item)
+                                      @if ($item->is_active == 1)
+                                          @include('layout.card')
+                                      @endif
+                                      @empty
+                                       <div class="container px-4 px-lg-5 mt-5">
+                                          <h3 style="text-align: center;">No items found :(</h3>
+                                       </div>
+                                  @endforelse
+                              </div>
+                           </div>
+                           @endif
                         @endif
                       </div>
                        <!-- end timeline -->

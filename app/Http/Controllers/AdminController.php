@@ -15,13 +15,21 @@ class AdminController extends Controller
     public function dashboard(){
         $conditions = Condition::all();
         $bids = Bid::all();
-        $items = Item::all();
+        $items = DB::table('items')
+            ->join('users', 'items.user_id', 'users.id')
+            ->select('items.*', 'users.name', 'users.id')
+            ->get();
         return view('admin.dashboard', ['items' => $items, 'conditions' => $conditions, 'bids' => $bids]);
     }
 
     public function users(Request $request){
         $data = User::withCount(['items'])->get();
         return view('admin.users', ['users' => $data]);
+    }
+
+    public function conditions(Request $request){
+        $conditions = Condition::all();
+        return view('admin.conditions', ['conditions' => $conditions]);
     }
 
     public function store(Request $request)

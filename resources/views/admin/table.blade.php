@@ -1,4 +1,4 @@
-<table class="table table-light table-hover  table-striped">
+<table class="table table-responsive table-light table-hover  table-striped">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -9,6 +9,7 @@
             <th scope="col">minBid</th>
             <th scope="col">Condition</th>
             <th scope="col">Active</th>
+            <th scope="col">Seller</th>
             <th scope="col">End date</th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -25,7 +26,7 @@
             <tr scope="row">
                 <th>{{$counter}}</th>
                 <td>
-                    {{$item->title}}
+                    <a href="/item/{{$item->id}}" class="btn" role="button"> {{$item->title}}</a>
                 </td>
                 <td>
                     {{$item->price}}
@@ -68,6 +69,9 @@
                     @endif
                 </td>
                 <td>
+                    <a href="/user/{{$item->user_id}}" class="btn" role="button"> {{$item->name}}</a>
+                </td>
+                <td>
                     {{$item->end_date}}
                 </td>
                 <td style="text-align: right;">
@@ -84,8 +88,3 @@
         @endforeach
     </tbody>
 </table>
-@if($counter == 0)
-<h3 style="text-align: center;">No items found :( <br>
-    <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>
- </h3>
-@endif

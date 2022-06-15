@@ -72,6 +72,10 @@
   }
 }
 
+.table td {
+  word-break: break-word;
+}
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);

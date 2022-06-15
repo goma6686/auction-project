@@ -50,7 +50,7 @@
                     <a href="/user/{{$user->id}}" class="btn btn-sm btn-dark " role="button">View</a>
                 </td>
                 <td style="text-align: right;">
-                    <a href="#" class="btn btn-sm btn-dark " role="button">Edit</a>
+                    <a href="/user/edit/{{ $user->id }}" class="btn btn-sm btn-dark " role="button">Edit</a>
                 </td>
                 <td>
                     <form action="/user/delete/{{$user->id}}" method="POST">
