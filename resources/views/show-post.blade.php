@@ -61,7 +61,7 @@
               <div class="pt-2 half">
                 <h5>Place a bid, €:</h5>
                   <input id="demo"  type="number" name="bid_amount" placeholder="Bid amount" step="0.01" min="{{$item->min_bid + $item->price}}">
-                  <button id="demo" " class="button btn-sm btn-dark text-right" type="submit">Place bid</button>
+                  <button id="demo2" " class="button btn-sm btn-dark text-right" type="submit">Place bid</button>
               </div>
               <div class="half">
                 <h6>Seller:</h6>
@@ -70,7 +70,7 @@
                       <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                   </svg>
                 </span> 
-                <a href="#" class="link-dark">{{$seller->name}} ( {{$count}} )</a>
+                <a href="/user/{{$seller->id}}" class="link-dark">{{$seller->name}} ( {{$count}} )</a>
               </div>
             </div>
           </form>
@@ -83,6 +83,7 @@
     const status = document.getElementById('status');
     if (status.textContent.includes('Auction Has Ended')) {
       document.getElementById('demo').disabled = true;
+      document.getElementById('demo2').disabled = true;
     }
   </script>
 @include('layout.timer')

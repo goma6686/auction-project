@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Auction') }}</title>
 
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
     @yield('js')
@@ -31,7 +31,7 @@
 </head>
 <body>
     <header class="p-1 bg-dark text-white">
-        @include('layout.header')
+            @include('layout.header')
     </header>
     <div id="app">
         <main class="py-4">

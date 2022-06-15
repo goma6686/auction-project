@@ -33,10 +33,6 @@
         @endphp
         @if ($date <= $now)
           <b>Auction Has Ended</b>
-        @elseif ($hours < 1)
-        <div>
-            <div class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date)->format('Y/m/d H:i:s') }}"></div>
-         </div>
         @else
             {{ $date->diff($now)->format("Ends in %dD %hH %iM"); }}
         @endif
