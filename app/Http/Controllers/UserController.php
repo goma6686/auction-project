@@ -18,7 +18,8 @@ class UserController extends Controller
         $bids = Bid::all();
         $user = User::findOrFail($id);
         $items = Item::where('user_id', $user->id)->get();
-        return view('profile', ['user' => $user, 'items' => $items, 'conditions' => $conditions, 'bids' => $bids]);
+        $count = $items->where('is_active', '=', 1)->count();
+        return view('profile', ['user' => $user, 'items' => $items, 'conditions' => $conditions, 'bids' => $bids, 'count' => '$count']);
     }
 
     public function edit($id)
