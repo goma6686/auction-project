@@ -47,13 +47,11 @@
                 @if ($date <= $now)
                   <b id="status">Auction Has Ended</b>
                 @elseif ($hours < 12)
-                <div>
                     <div id="timer" class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date) }}"></div>
-                </div>
                 @else
                     {{ $date->diff($now)->format("Ends in %dD %hH %iM"); }}
-                @endif
                 |   {{ Carbon\Carbon::parse($item->end_date)->format('l H:i') }}
+                @endif
               </h6>
           </div>
           <form enctype="multipart/form-data" method="POST" action="{{route('update-price', array($item->id))}}">
