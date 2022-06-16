@@ -92,7 +92,7 @@ class PostController extends Controller
     {
         $conditions = Condition::all();
         $item = Item::find($id);
-        return view('edit-post', ['conditions' => $conditions, 'item' => $item]);
+        return view('edit-post', compact('conditions', 'item'));
     }
 
     /**
@@ -152,10 +152,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function destroy($id)
     {
         $item = Item::findOrFail($id);
-        if($item -> cover != null){
+        if(isset($item -> cover)){
             unlink(public_path('/images/'.$item->cover));
         }
         Bid::where('item_id', $item->id)->delete();

@@ -26,11 +26,11 @@ Route::get('/item/{id}', [HomeController::class, 'show'])->name('show');
 
 Route::post('/item/updatePrice/{id}', [BidController::class, 'updatePrice'])->name('update-price');
 
-Route::get('/profile/create', [PostController::class, 'create'])->name('create-post');
-Route::get('/profile/edit/{id}', [PostController::class, 'edit'])->name('edit-post');
-Route::post('/profile/update/{id}', [PostController::class, 'update'])->name('update-post');
-Route::delete('/profile/delete/{id}', [PostController::class, 'destroy']);
-Route::delete('/profile/removeImage/{id}', [PostController::class, 'removeImage']);
+Route::get('/item/create', [PostController::class, 'create'])->name('create-post');
+Route::get('/item/edit/{id}', [PostController::class, 'edit'])->name('edit-post');
+Route::post('/item/update/{id}', [PostController::class, 'update'])->name('update-post');
+Route::delete('/item/delete/{id}', [PostController::class, 'destroy']);
+Route::delete('/item/removeImage/{id}', [PostController::class, 'removeImage']);
 
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('edit-user');
 Route::post('/user/update/{id}', [UserController::class, 'update'])->name('update-user');

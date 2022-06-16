@@ -71,10 +71,10 @@
                     {{$item->end_date}}
                 </td>
                 <td style="text-align: right;">
-                    <a href="/profile/edit/{{$item->id}}" class="btn btn-sm btn-dark " role="button">Edit</a>
+                    <a href="/item/edit/{{$item->id}}" class="btn btn-sm btn-dark " role="button">Edit</a>
                 </td>
                 <td>
-                    <form action="/profile/delete/{{$item->id}}" method="POST">
+                    <form action="/item/delete/{{$item->id}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger" onclick="return confirm('Do you want to delete this post?')">Delete</button>

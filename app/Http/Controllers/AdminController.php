@@ -18,9 +18,9 @@ class AdminController extends Controller
         $bids = Bid::all();
         $items = DB::table('items')
             ->join('users', 'items.user_id', 'users.id')
-            ->select('items.*', 'users.name', 'users.id')
+            ->select('items.id as item_id', 'items.*', 'users.name', 'users.id')
             ->get();
-        return view('admin.dashboard', ['items' => $items, 'conditions' => $conditions, 'bids' => $bids]);
+        return view('admin.dashboard', compact('items', 'conditions', 'bids'));
     }
 
     public function users(Request $request){
