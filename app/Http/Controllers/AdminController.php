@@ -42,7 +42,7 @@ class AdminController extends Controller
 
         try {
             $condition -> save();
-            return back()->with('status', 'Ye');
+            return back();
         
         } catch(\Illuminate\Database\QueryException $e){
             $errorCode = $e->errorInfo[1];
