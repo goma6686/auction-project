@@ -26,8 +26,7 @@ class PostController extends Controller
     public function create()
     {
         $conditions = Condition::all();
-        $items = Item::all();
-        return view('create-post', ['conditions' => $conditions, 'items' => $items]);
+        return view('create-post', ['conditions' => $conditions]);
     }
 
     /**
@@ -74,13 +73,6 @@ class PostController extends Controller
         $item -> save();
         return redirect('/profile');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     /**
      * Show the form for editing the specified resource.

@@ -30,6 +30,11 @@ class HomeController extends Controller
 
     public function index(){
         $items = Item::orderBy('created_at', 'desc')->get();
+        $items = DB::table('items')
+            ->join('users', 'items.user_id', 'users.id')
+            ->where('users.is_active', '=', 1)
+            ->select('items.*')
+            ->get();
         $conditions = Condition::all();
         return view('dashboard', ['items' => $items, 'conditions' => $conditions]);
     }

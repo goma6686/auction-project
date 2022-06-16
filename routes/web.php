@@ -22,7 +22,6 @@ use App\Http\Middleware\Authenticate;
 
 Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
-Route::get('/item/{id}', [HomeController::class, 'show'])->name('show');
 
 Route::post('/item/updatePrice/{id}', [BidController::class, 'updatePrice'])->name('update-price');
 
@@ -31,6 +30,7 @@ Route::get('/item/edit/{id}', [PostController::class, 'edit'])->name('edit-post'
 Route::post('/item/update/{id}', [PostController::class, 'update'])->name('update-post');
 Route::delete('/item/delete/{id}', [PostController::class, 'destroy']);
 Route::delete('/item/removeImage/{id}', [PostController::class, 'removeImage']);
+Route::get('/item/{id}', [HomeController::class, 'show'])->name('show');
 
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('edit-user');
 Route::post('/user/update/{id}', [UserController::class, 'update'])->name('update-user');
