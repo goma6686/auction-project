@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b233c88a1ec3b9ddfbd9eb9cae46e34f",
+    "content-hash": "f75909d923c01701d287733dc8d4d131",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -5444,6 +5444,65 @@
                 }
             ],
             "time": "2022-05-21T13:34:40+00:00"
+        },
+        {
+            "name": "synergitech/laravel-alert",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SynergiTech/laravel-alert.git",
+                "reference": "a0fcea1aaeba847e156074751972d835c86a3065"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SynergiTech/laravel-alert/zipball/a0fcea1aaeba847e156074751972d835c86a3065",
+                "reference": "a0fcea1aaeba847e156074751972d835c86a3065",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/session": "^8.0 || ^9.0",
+                "illuminate/support": "^8.0 || ^9.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0 || ^7.0",
+                "php-parallel-lint/php-parallel-lint": "^1.3",
+                "phpstan/phpstan": "^1",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "aliases": {
+                        "Alert": "SynergiTech\\Alert\\Facade"
+                    },
+                    "providers": [
+                        "SynergiTech\\Alert\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "SynergiTech\\Alert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Construct custom alerts with Laravel",
+            "keywords": [
+                "alert",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/SynergiTech/laravel-alert/issues",
+                "source": "https://github.com/SynergiTech/laravel-alert/tree/v2.0.0"
+            },
+            "time": "2022-05-19T16:03:38+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

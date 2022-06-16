@@ -15,7 +15,8 @@
         "laravelcollective/html": "^6.3",
         "nesbot/carbon": "^2.57",
         "pusher/pusher-php-server": "^7.0",
-        "shanmuga/laravel-entrust": "^3.0"
+        "shanmuga/laravel-entrust": "^3.0",
+        "synergitech/laravel-alert": "^2.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.19",

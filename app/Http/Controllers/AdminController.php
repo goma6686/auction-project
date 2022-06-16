@@ -9,6 +9,7 @@ use App\Models\Bid;
 use App\Models\Condition;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Alert;
 
 class AdminController extends Controller
 {
@@ -48,6 +49,7 @@ class AdminController extends Controller
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
                 return back()->with('error', 'Houston, we have a duplicate entry problem');
+                //return back()->with(alert()->error('Error Message', 'Optional Title'));
             }else {
                 return back()->with('error', 'something went wrong');
             }

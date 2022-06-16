@@ -42,7 +42,7 @@
                 @elseif (round((strtotime($item->end_date) - time()) / 3600) < 12)
                     <div id="timer" class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date) }}"></div>
                 @else
-                    {{ $date->diff($now)->format("Ends in %dD %hH %iM"); }}
+                    {{ (new DateTime($item->end_date))->diff(new DateTime(\Carbon\Carbon::now()))->format("Ends in %dD %hH %iM"); }}
                 |   {{ Carbon\Carbon::parse($item->end_date)->format('l H:i') }}
                 @endif
               </h6>

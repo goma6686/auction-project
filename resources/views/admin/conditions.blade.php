@@ -12,7 +12,7 @@
 </div>
 <script>
     @if(session()->has('error'))
-      alert('{{session()->get('error')}}')
+      Swal.fire('{{session()->get('error')}}')
     @endif
 </script>
 @endsection
