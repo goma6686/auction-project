@@ -4,7 +4,7 @@
     <h1 class="latest text-center mb-2">Edit Auction Post</h1>
     <div class="max-w-5md sm:px-6 lg:px-8 p-5">
         <label>Cover image</label>
-        @if ($item->cover != null)
+        @if (isset($item->cover))
         <form action="/profile/removeImage/{{ $item->id }}" method="post">
             @csrf
             @method('delete')
@@ -22,7 +22,7 @@
             @error('cover')
                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
             @enderror
-            @if ($item->cover != null)
+            @if (isset($item->cover))
                 <br><img class="img-fluid mt-2"  src="/images/{{ ($item->cover) }}" width="230">
             @endif
             </div>

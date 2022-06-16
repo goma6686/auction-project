@@ -51,13 +51,13 @@
                            @else
                               <div class="container px-4 px-lg-5 mt-5">
                                  <div class="row gx-3 gy-3 row-cols-2 row-cols-md-3 row-cols-xl-3">
-                                    @if ($count > 0)
+                                    @if ($count > 0) <!-- jei daugiau nei 0 aktyviu -->
                                        @foreach ($items as $item)
                                           @if ($item->is_active == 1)
                                                 @include('layout.card')
                                           @endif
                                        @endforeach
-                                       @else
+                                    @else
                                        <div class="container px-4 px-lg-5 mt-5">
                                           <h3 style="text-align: center;">No items found :(</h3>
                                        </div>
@@ -65,10 +65,6 @@
                                  </div>
                               </div>
                            @endif
-                           @else
-                           <h3 style="text-align: center;">No items found :( <br>
-                              <a href="{{ route('create-post') }}" class="btn btn-md btn-outline-dark mt-3 mx-auto">Add one?</a>
-                           </h3>
                         @endif
                       </div>
                        <!-- end timeline -->

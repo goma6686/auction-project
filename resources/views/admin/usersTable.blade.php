@@ -1,4 +1,4 @@
-<table class="table table-dark table-hover">
+<table class="table table-light table-hover">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -23,7 +23,7 @@
             <tr scope="row">
                 <th>{{$counter}}</th>
                 <td>
-                    {{$user->name}}
+                    <a href="/user/{{$user->id}}" class="btn" role="button"> {{$user->name}}</a>
                 </td>
                 <td>
                     {{$user->email}}
