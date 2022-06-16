@@ -17,11 +17,11 @@ class ConditionSeeder extends Seeder
         \DB::table('conditions')->delete();
 
         \DB::table('conditions')->insert([
-                ['id' => '1', 'name' => 'New'],
+                ['id' => '1', 'name' => 'Unknown'],
                 ['id' => '2', 'name' => 'Like-New'],
                 ['id' => '3', 'name' => 'Used'],
                 ['id' => '4', 'name' => 'Broken'],
-                ['id' => '5', 'name' => 'Unknown'],
+                ['id' => '5', 'name' => 'New'],
         ]);
     }
 }

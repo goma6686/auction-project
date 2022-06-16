@@ -3,8 +3,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Name</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -12,6 +11,7 @@
             $counter = 0;
         @endphp
         @foreach ($conditions as $condition)
+        @if ($loop->first) @continue @endif
         @php
             $counter++;
         @endphp
@@ -20,7 +20,6 @@
                 <td>
                     {{$condition->name}}
                 </td>
-                <td></td>
                 <td>
                     <form action="/condition/delete/{{$condition->id}}" method="POST">
                         @csrf
@@ -36,7 +35,6 @@
                     <td>
                         <input type="text" name="name" class="form-control" required="">
                     </td>
-                    <td></td>
                     <td>
                         @csrf
                     <button type="submit" class="btn btn-sm btn-dark">Add</button>

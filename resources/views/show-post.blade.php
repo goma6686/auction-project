@@ -16,11 +16,12 @@
       <h3 class="mt-4 text-center">About</h3>
         <div class="card p-3 border-dark">
           <div class="card-body">
+            <div class="row">
               <h5 class="elem">
                 <div>Current bids:</div>
                 <div class="dots"></div>
                 <div id="p1">{{ $item->bidder_count }}</div>
-              </h5>
+              </h5></div>
               <h5 class="elem">
                 @foreach ($conditions as $condition)
                   @if ($item->condition_id == $condition->id)

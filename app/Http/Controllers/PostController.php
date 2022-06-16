@@ -158,7 +158,7 @@ class PostController extends Controller
         if($item -> cover != null){
             unlink(public_path('/images/'.$item->cover));
         }
-        $bids = Bid::where('item_id', $item->id)->delete();
+        Bid::where('item_id', $item->id)->delete();
         $item->delete();
         return redirect()->back();
     }

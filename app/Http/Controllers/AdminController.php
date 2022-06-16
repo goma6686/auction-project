@@ -46,7 +46,10 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $condition = Condition::findOrFail($id);
-        $condition->delete();
+        if($id != 1){
+            Item::where('condition_id', $id)->update((['condition_id'=>'1']));
+            $condition->delete();
+        }
         return redirect()->back();
     }
 }
