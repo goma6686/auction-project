@@ -17,45 +17,32 @@
         <div class="card p-3 border-dark">
           <div class="card-body">
             <div class="row">
-              <h5 class="elem">
-                <div>Current bids:</div>
-                <div class="dots"></div>
-                <div id="p1">{{ $item->bidder_count }}</div>
+              <h5 class="row">
+                <div class="col-3">Current bids:</div>
+                <div class="col-7 text-start" id="p1">{{ $item->bidder_count }}</div>
               </h5></div>
-              <h5 class="elem">
+              <h5 class="row">
                 @foreach ($conditions as $condition)
                   @if ($item->condition_id == $condition->id)
-                  <div>Condition:</div>
-                  <div class="dots"></div>
-                  <div>{{ $condition->name }}</div>
+                  <div class="col-3">Condition:</div>
+                  <div class="col-7 text-start">{{ $condition->name }}</div>
                   @endif
                 @endforeach
               </h5>
-              <h5 class="elem">
-                  <div>Current Price, €:</div>
-                  <div class="dots"></div>
-                  <div id="price">{{$item->price}}</div>
+              <h5 class="row">
+                  <div class="col-3">Current Price, €:</div>
+                  <div class="col-7 text-start" id="price">{{$item->price}}</div>
               </h5>
-              <h6 class="text-center">
-                @if (new DateTime($item->end_date) <= new DateTime(\Carbon\Carbon::now()))
-                  <b id="status">Auction Has Ended</b>
-                @elseif (round((strtotime($item->end_date) - time()) / 3600) < 12)
-                    <div id="timer" class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date) }}"></div>
-                @else
-                    {{ (new DateTime($item->end_date))->diff(new DateTime(\Carbon\Carbon::now()))->format("Ends in %dD %hH %iM"); }}
-                |   {{ Carbon\Carbon::parse($item->end_date)->format('l H:i') }}
-                @endif
-              </h6>
           </div>
           <form enctype="multipart/form-data" method="POST" action="{{route('update-price', array($item->id))}}">
             @csrf
-            <div class="card-footer form-group">
-              <div class="pt-2 half">
+            <div class="card-footer form-group row">
+              <div class="pt-2 col">
                 <h5>Place a bid, €:</h5>
                   <input id="demo"  type="number" name="bid_amount" placeholder="Bid amount" step="0.01" min="{{$item->min_bid + $item->price}}">
                   <button id="demo2" " class="button btn-sm btn-dark text-right" type="submit">Place bid</button>
               </div>
-              <div class="half">
+              <div class="col text-end">
                 <h6>Seller:</h6>
                 <span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
@@ -66,6 +53,16 @@
               </div>
             </div>
           </form>
+          <h6 class="pt-3 text-center">
+            @if (new DateTime($item->end_date) <= new DateTime(\Carbon\Carbon::now()))
+              <b id="status">Auction Has Ended</b>
+            @elseif (round((strtotime($item->end_date) - time()) / 3600) < 12)
+                <div id="timer" class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date) }}"></div>
+            @else
+                {{ (new DateTime($item->end_date))->diff(new DateTime(\Carbon\Carbon::now()))->format("Ends in %dD %hH %iM"); }}
+            |   {{ Carbon\Carbon::parse($item->end_date)->format('l H:i') }}
+            @endif
+          </h6>
           </div>
         </div>
       </div>
