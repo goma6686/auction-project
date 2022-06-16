@@ -39,11 +39,11 @@
     </div>
     </div>
   </div>
-  <div class="card-footer">
-  <div class="half">
+  <div class="card-footer row">
+  <div class="col">
         <h5>Price: {{ $item->price }} €</h5>
     </div>
-    <div class="half text-end">
+    <div class="col text-end">
         <a href="/item/{{$item->id}}" role="button" class="btn btn-sm btn-light">See more</a>
     </div>
   </div>
