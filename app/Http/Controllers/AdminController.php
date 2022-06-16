@@ -39,8 +39,19 @@ class AdminController extends Controller
         ]);
         $condition = new Condition();
         $condition -> name = $request->input('name');
-        $condition -> save();
-        return redirect()->back();
+
+        try {
+            $condition -> save();
+            return back()->with('status', 'Ye');
+        
+        } catch(\Illuminate\Database\QueryException $e){
+            $errorCode = $e->errorInfo[1];
+            if($errorCode == 1062){
+                return back()->with('error', 'Houston, we have a duplicate entry problem');
+            }else {
+                return back()->with('error', 'something went wrong');
+            }
+        }
     }
 
     public function destroy($id)

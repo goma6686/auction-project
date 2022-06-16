@@ -1,6 +1,7 @@
 @extends('layout.app')
 @section('content')
 <div class="container">
+    <h3 class="text-center mb-2">Conditions</h3>
     <div class="row">
             <div class="card mx-auto border-dark justify-content-center">
                 <div class="mx-auto">
@@ -9,4 +10,9 @@
             </div>
     </div>
 </div>
+<script>
+    @if(session()->has('error'))
+      alert('{{session()->get('error')}}')
+    @endif
+</script>
 @endsection

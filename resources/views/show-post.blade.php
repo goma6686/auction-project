@@ -37,16 +37,9 @@
                   <div id="price">{{$item->price}}</div>
               </h5>
               <h6 class="text-center">
-                @php    
-                  $date = new DateTime($item->end_date);
-                  $now = new DateTime(\Carbon\Carbon::now());
-                  $diff = $now->diff($date);
-                  $hours = $diff->h;
-                  $hours = $hours + ($diff->days*24);
-                @endphp
-                @if ($date <= $now)
+                @if (new DateTime($item->end_date) <= new DateTime(\Carbon\Carbon::now()))
                   <b id="status">Auction Has Ended</b>
-                @elseif ($hours < 12)
+                @elseif (round((strtotime($item->end_date) - time()) / 3600) < 12)
                     <div id="timer" class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date) }}"></div>
                 @else
                     {{ $date->diff($now)->format("Ends in %dD %hH %iM"); }}
