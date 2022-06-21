@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Bid;
+use App\Models\Winner;
+use Illuminate\Support\Facades\DB;
 use App\Events\BidPlaced;
 use Carbon\Carbon;
 
@@ -42,13 +44,26 @@ class BidController extends Controller
         $bid -> save();
 
         event(new BidPlaced($item));
-        $pusher = new \Pusher(
-            env('PUSHER_APP_KEY'),
-            env('PUSHER_APP_SECRET'),
-            env('PUSHER_APP_ID'),
-            array('cluster' => env('PUSHER_APP_CLUSTER'))
-        );
-        $pusher->trigger('Bids', 'BidPlaced', $item);
+        return redirect()->back();
+    }
+
+    public function findWinner($item_id){
+        
+        $item = Item::findOrFail($item_id);
+        $win = DB::table('bids')
+            ->join('users', 'bids.user_id', 'users.id')
+            ->where('bids.item_id', $item->id)
+            ->select('users.id as user_id', 'item_id', 'bids.bid_amount as final_amount')
+            ->orderBy('bid_amount', 'desc')
+            ->first();
+
+        $winner = new Winner();
+        $winner -> user_id = $win->user_id;
+        $winner -> item_id = $win->item_id;
+        $winner -> final_amount = $win->final_amount;
+        $winner -> created_at = \Carbon\Carbon::now()->toDateTimeString();
+        $winner -> save();
+        
         return redirect()->back();
     }
 }

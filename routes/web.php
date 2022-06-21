@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +25,7 @@ Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 
 
 Route::post('/item/updatePrice/{id}', [BidController::class, 'updatePrice'])->name('update-price');
+Route::get('/item/winner/{id}', [BidController::class, 'findWinner'])->name('findWinner');
 
 Route::get('/item/create', [PostController::class, 'create'])->name('create-post');
 Route::get('/item/edit/{id}', [PostController::class, 'edit'])->name('edit-post');
@@ -38,6 +40,7 @@ Route::delete('/user/removeImage/{id}', [UserController::class, 'removeAvatar'])
 Route::post('/profile', [PostController::Class, 'store']);
 
 Route::get('/user/{id}', [UserController::class, 'show']);
+Route::get('/user/{id}/list', [UserController::class, 'winnerList']);
 
 Route::group(['middleware' => 'admin'], function(){
     Route::get('/profile/admin', [AdminController::class, 'dashboard'])->name('admin');

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\BidController;
+
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Winner;
 use App\Models\Bid;
 use App\Models\User;
 use App\Models\Condition;
@@ -13,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
     
-    public function show(Request $request, $id){
+    public function show($id){
         $conditions = Condition::all();
         $bids = Bid::all();
         $user = User::findOrFail($id);
@@ -90,5 +93,13 @@ class UserController extends Controller
         Bid::where('user_id', $user->id)->delete();
         $user->delete();
         return redirect()->back();
+    }
+
+    public function winnerList($id){
+        $won = Winner::where('winners.user_id', $id)
+        ->join('items', 'items.id', 'winners.item_id')
+        ->select('winners.*', 'items.title')
+        ->get();
+        return view('layout.list', compact('won'));
     }
 }

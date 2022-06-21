@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\User;
+use App\Models\Winner;
 use App\Models\Bid;
 use App\Models\Condition;
 use Illuminate\Support\Facades\Auth;
@@ -43,9 +44,10 @@ class HomeController extends Controller
     {
         $conditions = Condition::all();
         $item = Item::find($id);
-        $bids = Bid::where('item_id', $item->id)->get();
+        $bids = Bid::where('item_id', $id)->get();
         $seller = User::select('id','name')->where('id', $item->user_id)->first();
         $count = $seller->countItems()->count();
+        
         return view('show-post', ['item' => $item, 'conditions' => $conditions, 'bids' => $bids, 'seller' => $seller, 'count' => $count] );
     }
 

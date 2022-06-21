@@ -26,7 +26,7 @@
             <tr scope="row">
                 <th>{{$counter}}</th>
                 <td>
-                    <a href="/item/{{$item->id}}" class="btn" role="button"> {{$item->title}}</a>
+                    <a href="/item/{{$item->item_id}}" class="btn" role="button"> {{$item->title}}</a>
                 </td>
                 <td>
                     {{$item->price}}
@@ -69,7 +69,7 @@
                     @endif
                 </td>
                 <td>
-                    <a href="/user/{{$item->user_id}}" class="btn" role="button"> {{$item->name}}</a>
+                    <a href="/user/{{$item->user_id}}" class="btn" role="button"> {{$item->seller}}</a>
                 </td>
                 <td>
                     {{$item->end_date}}

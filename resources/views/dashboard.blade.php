@@ -7,6 +7,27 @@
           <button class="nav-link " id="v-pills-soon-tab" data-bs-toggle="pill" data-bs-target="#v-pills-soon" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Ending Soon</button>
         </div>
         <div class="tab-content" id="v-pills-tabContent">
+        <!--
+        <div class="row">
+            <div class="col-4">
+                <div class="list-group" id="myList" role="tablist">
+                    @foreach($conditions as $condition)
+                        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#home" role="tab">Home</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#profile" role="tab">Profile</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#messages" role="tab">Messages</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#settings" role="tab">Settings</a>
+                    @endforeach
+                  </div>
+            </div>
+            <div class="col-8">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home" role="tabpanel">a</div>
+                    <div class="tab-pane" id="profile" role="tabpanel">b</div>
+                    <div class="tab-pane" id="messages" role="tabpanel">c</div>
+                    <div class="tab-pane" id="settings" role="tabpanel">...</div>
+                </div>
+          </div>
+        -->
         <!--<input type="search" placeholder="Search.." name="search" class="form-control" onkeyup="buttonUp();">-->
           <div class="tab-pane fade show active" id="v-pills-all" role="tabpanel" aria-labelledby="v-pills-all-tab">
             <div class="container px-4 px-lg-5 mt-5">
@@ -29,14 +50,7 @@
                 @endphp
                 @foreach ($items as $item)
                     @if ($item->is_active == 1)
-                        @php    
-                            $date = new DateTime($item->end_date);
-                            $now = new DateTime(\Carbon\Carbon::now());
-                            $diff = $now->diff($date);
-                            $hours = $diff->h;
-                            $hours = $hours + ($diff->days*24);
-                        @endphp
-                        @if ($hours < 12)
+                        @if (round((strtotime($item->end_date) - time()) / 3600) < 12)
                             @php
                                 $counter++;
                             @endphp
@@ -52,5 +66,11 @@
         </div>
     </div>
 </div>
+<script>
+$('#myList a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>
 @include('layout.search')
 @endsection

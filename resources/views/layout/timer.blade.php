@@ -25,7 +25,11 @@ setInterval(function() {
    if (distance < 0) {
       clearInterval();
       location.reload();
-
+      const bidders = document.getElementById("p1").innerHTML;
+      if (bidders > 0){
+        var id = (window.location.pathname).substring((window.location.pathname).lastIndexOf('/') + 1);
+          window.location.href = '/item/winner/'+id;
+      }
    }
 }, 1000); //1000 = 1 sec
 

@@ -38,9 +38,17 @@
             @csrf
             <div class="card-footer form-group row">
               <div class="pt-2 col">
-                <h5>Place a bid, €:</h5>
-                  <input id="demo"  type="number" name="bid_amount" placeholder="Bid amount" step="0.01" min="{{$item->min_bid + $item->price}}">
-                  <button id="demo2" " class="button btn-sm btn-dark text-right" type="submit">Place bid</button>
+                @if(Auth::user()->is_active)
+                  @if(Auth::user()->id != $seller->id)
+                      <h5>Place a bid, €:</h5>
+                      <input id="bid_amount"  type="number" name="bid_amount" placeholder="Bid amount" step="0.01" min="{{$item->min_bid + $item->price}}">
+                      <button id="bid" " class="button btn-sm btn-dark text-right" type="submit">Place bid</button>
+                  @else
+                      <h5>You can't bid on your own items</h5>
+                  @endif
+                @else
+                  <h5>You can't bid on items</h5>
+                @endif
               </div>
               <div class="col text-end">
                 <h6>Seller:</h6>
@@ -55,7 +63,7 @@
           </form>
           <h6 class="pt-3 text-center">
             @if (new DateTime($item->end_date) <= new DateTime(\Carbon\Carbon::now()))
-              <b id="status">Auction Has Ended</b>
+                <b id="status">Auction Has Ended</b>
             @elseif (round((strtotime($item->end_date) - time()) / 3600) < 12)
                 <div id="timer" class="wrap-countdown time-countdown" data-expire="{{ Carbon\Carbon::parse($item->end_date) }}"></div>
             @else
@@ -71,8 +79,8 @@
   <script>
     const status = document.getElementById('status');
     if (status.textContent.includes('Auction Has Ended')) {
-      document.getElementById('demo').disabled = true;
-      document.getElementById('demo2').disabled = true;
+      document.getElementById('bid_amount').disabled = true;
+      document.getElementById('bid').disabled = true;
     }
   </script>
 @include('layout.timer')

@@ -37,4 +37,8 @@ class Item extends Model
     {
         return $this->hasOne(Condition::class);
     }
+
+    public function winner(){
+        return $this->hasOne(Winner::class);
+    }
 }

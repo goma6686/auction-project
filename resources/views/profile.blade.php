@@ -29,9 +29,7 @@
                           @if(Auth::user()->id == $user->id && Auth::user()->is_active == 1)
                            <a href="/user/edit/{{ $user->id }}" class="btn btn-dark " role="button">Edit Profile</a>
                            <a href="{{ route('create-post') }}" role="button" class="btn btn-dark">Add Item</a>
-                          @endif
-                          @if (Auth::user()->is_admin && Auth::user()->id == $user->id) 
-                              <a href="{{ route('admin') }}" role="button" class="btn btn-dark">Admin Board</a> 
+                           <a href="/user/{{ $user->id }}/list" role="button" class="btn btn-dark">Items Won</a>
                           @endif
                        </div>
                        <!-- END profile-header-info -->
@@ -45,7 +43,7 @@
                     <!-- begin #profile-items tab -->
                     <div class="tab-pane fade active show mt-3" id="profile-items">
                       <div class="container mt-2">
-                        @if(Auth::user()->is_active)
+                        @if($user->is_active)
                            @if (isset($items))
                               @if(Auth::user()->id == $user->id)
                                  @include('layout.table')
@@ -67,9 +65,13 @@
                                  </div>
                               @endif
                            @endif
-                           @else
+                        @elseif(Auth::user()->id == $user->id)
                            <div class="container px-4 px-lg-5 mt-5">
                               <h3 style="text-align: center;">Your account has been deactivated:(</h3>
+                           </div>
+                        @elseif(Auth::user()->id != $user->id)
+                           <div class="container px-4 px-lg-5 mt-5">
+                              <h3 style="text-align: center;">This account has been deactivated:(</h3>
                            </div>
                         @endif
                       </div>

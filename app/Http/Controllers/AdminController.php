@@ -18,7 +18,7 @@ class AdminController extends Controller
         $bids = Bid::all();
         $items = DB::table('items')
             ->join('users', 'items.user_id', 'users.id')
-            ->select('items.id as item_id', 'items.*', 'users.name', 'users.id')
+            ->select('items.id as item_id', 'items.*', 'users.name as seller', 'users.id')
             ->get();
         return view('admin.dashboard', compact('items', 'conditions', 'bids'));
     }
@@ -49,7 +49,6 @@ class AdminController extends Controller
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
                 return back()->with('error', 'Houston, we have a duplicate entry problem');
-                //return back()->with(alert()->error('Error Message', 'Optional Title'));
             }else {
                 return back()->with('error', 'something went wrong');
             }
